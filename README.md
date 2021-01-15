@@ -1,3 +1,21 @@
+
+# Downloading reference data
+
+```
+mkdir rnaseq
+cd rnaseq
+wget --mirror --no-parent --no-host --cut-dirs=1 https://download.pirca.arvadosapi.com/c=pirca-4zz18-sa9s62lzc00jeds/
+```
+
+# Building the Docker image
+
+```
+cd dockerfile
+docker build -t cwl-training-rnaseq-tools .
+```
+
+# Acknowledgements
+
 These CWL lessons are based on "Introduction to RNA-seq using
 high-performance computing (HPC)" lessons developed by members of the
 teaching team at the Harvard Chan Bioinformatics Core (HBC) and
