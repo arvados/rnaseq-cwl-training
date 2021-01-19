@@ -118,7 +118,7 @@ After setting the RAM requirements, re-run the workflow.
 
 5. Workflow results
 
-The CWL runner will print a results JSON object.  It will look something like this (it may include additional fields).
+The CWL runner will print a results JSON object to standard output.  It will look something like this (it may include additional fields).
 
 
 ```

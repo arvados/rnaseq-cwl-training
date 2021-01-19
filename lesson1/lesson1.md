@@ -54,7 +54,18 @@ series of steps, and produce output values.
 
 For this analysis, the input parameters are the fastq file and the reference data required by STAR.
 
-In CWL, these are declared in the `inputs` section.
+In the original bash script, the following variables are declared:
+
+```
+# initialize a variable with an intuitive name to store the name of the input fastq file
+fq=$1
+
+# directory with genome reference FASTA and index files + name of the gene annotation file
+genome=rnaseq/reference_data
+gtf=rnaseq/reference_data/chr1-hg19_genes.gtf
+```
+
+In CWL, we will declare these variables in the `inputs` section.
 
 The inputs section lists each input parameter and its type.  Valid
 types include `File`, `Directory`, `string`, `boolean`, `int`, and
