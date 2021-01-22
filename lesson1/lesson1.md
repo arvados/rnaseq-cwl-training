@@ -1,4 +1,4 @@
-# Turning a bash script into a workflow using existing tools
+# Turning a shell script into a workflow using existing tools
 
 In this lesson we will turn `rnaseq_analysis_on_input_file.sh` into a workflow.
 
@@ -54,7 +54,7 @@ series of steps, and produce output values.
 
 For this analysis, the input parameters are the fastq file and the reference data required by STAR.
 
-In the original bash script, the following variables are declared:
+In the original shell script, the following variables are declared:
 
 ```
 # initialize a variable with an intuitive name to store the name of the input fastq file
@@ -112,7 +112,7 @@ steps:
     run: bio-cwl-tools/fastqc/fastqc_2.cwl
     in:
 	  reads_file: fq
-    out: [html_file, summary_file]
+    out: [html_file]
 ```
 
 5. Running alignment with STAR
@@ -186,9 +186,6 @@ outputs:
   qc_html:
     type: File
     outputSource: fastqc/html_file
-  qc_summary:
-    type: File
-    outputSource: fastqc/summary_file
   bam_sorted_indexed:
     type: File
     outputSource: samtools/bam_sorted_indexed

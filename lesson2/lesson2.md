@@ -4,7 +4,7 @@
 
 CWL input values are provided in the form of a YAML or JSON file.
 Create one by right clicking on the explorer, select "New File" and
-create a called file "input.yaml".
+create a called file "main-input.yaml".
 
 This file gives the values for parameters declared in the `inputs`
 section of our workflow.  Our workflow takes `fq`, `genome` and `gtf`
@@ -58,7 +58,7 @@ In vscode, select "main.cwl" and then choose "Terminal -> Run task -> Run CWL wo
 Type this into the terminal:
 
 ```
-cwl-runner main.cwl input.yaml
+cwl-runner main.cwl main-input.yaml
 ```
 
 3. Debugging the workflow
@@ -103,7 +103,7 @@ request more RAM, add a "requirements" section with
   STAR:
     requirements:
       ResourceRequirement:
-        ramMin: 7000
+        ramMin: 8000
     run: bio-cwl-tools/STAR/STAR-Align.cwl
 ```
 
@@ -142,17 +142,11 @@ The CWL runner will print a results JSON object to standard output.  It will loo
         "basename": "Mov10_oe_1.subset_fastqc.html",
         "class": "File",
         "size": 383589
-    },
-    "qc_summary": {
-        "location": "file:///home/username/rnaseq-cwl-training-exercises/summary.txt",
-        "basename": "summary.txt",
-        "class": "File",
-        "size": 590
     }
 }
 ```
 
-This has the same structure as `input.yaml`.  The each output
+This has the same structure as `main-input.yaml`.  The each output
 parameter is listed, with the `location` field of each `File` object
 indicating where the output file can be found.
 
