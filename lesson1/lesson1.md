@@ -33,7 +33,7 @@ git submodule add https://github.com/common-workflow-library/bio-cwl-tools.git
 
 ## Writing the workflow
 
-### 1.
+### 1. File header
 
 Create a new file "main.cwl"
 
