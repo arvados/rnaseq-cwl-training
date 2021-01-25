@@ -7,9 +7,7 @@ In this lesson we will turn `rnaseq_analysis_on_input_file.sh` into a workflow.
 We will create a new git repository and import a library of existing
 tool definitions that will help us build our workflow.
 
-1. Select "Terminal->New terminal"
-
-2. Create a new git repository to hold our workflow with this command:
+Create a new git repository to hold our workflow with this command:
 
 ```
 git init rnaseq-cwl-training-exercises
@@ -21,11 +19,7 @@ On Arvados use this:
 git clone https://github.com/arvados/arvados-vscode-cwl-template.git rnaseq-cwl-training-exercises
 ```
 
-3. Go to File->Open Folder and select rnaseq-cwl-training-exercises
-
-4. Go to the terminal window
-
-5. Import bio-cwl-tools with this command:
+Next, import bio-cwl-tools with this command:
 
 ```
 git submodule add https://github.com/common-workflow-library/bio-cwl-tools.git

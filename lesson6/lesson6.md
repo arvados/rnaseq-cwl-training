@@ -23,8 +23,13 @@ Gitter (chat) https://gitter.im/common-workflow-language/common-workflow-languag
 
 Weekly video calls https://cwl.discourse.group/t/eu-us-timezone-cwl-video-chat/260
 
+## Software resources
+
 Github organization for repositories of CWL tool and workflow
-descriptions https://github.com/common-workflow-library/
+descriptions, including bio-cwl-tools
+https://github.com/common-workflow-library/
+
+BioContainers https://biocontainers.pro/
 
 Search for CWL files on github, try adding the name of a tool you are
 interested in to the search

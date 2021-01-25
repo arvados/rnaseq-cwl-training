@@ -52,8 +52,6 @@ Type this into the terminal:
 cwl-runner main.cwl main-input.yaml
 ```
 
-On Arvados with vscode, select "main.cwl" and then choose "Terminal -> Run task -> Run CWL workflow on Arvados"
-
 ### 3. Debugging the workflow
 
 A workflow can fail for many reasons: some possible reasons include
@@ -163,8 +161,6 @@ This is a rather large download (4 GB).  Depending on your bandwidth, it may be 
 
 ### Downloading
 
-Go to the "Terminal" tab in the lower vscode panel.  If necessary, select `bash` from the dropdown list in the upper right corner.
-
 ```
 mkdir hg19-chr1-STAR-index
 cd hg19-chr1-STAR-index
@@ -187,9 +183,7 @@ Gtf:
 Overhang: 99
 ```
 
-Next, go to the "Terminal" tab in the lower vscode panel.  If
-necessary, select `bash` from the dropdown list in the upper right
-corner.  Generate the index with your local cwl-runner.
+Generate the index with your local cwl-runner.
 
 ```
 cwl-runner bio-cwl-tools/STAR/STAR-Index.cwl chr1-star-index.yaml
