@@ -4,18 +4,18 @@ It is time to add the last step in the analysis.
 
 This will use the "featureCounts" tool from the "subread" package.
 
-# Writing the tool wrapper
+### 1. File header
 
-1. Create a new file "featureCounts.cwl"
+Create a new file "featureCounts.cwl"
 
-2. Start with this header
+Start with this header
 
 ```
 cwlVersion: v1.2
 class: CommandLineTool
 ```
 
-3. Command line tool inputs
+### 2. Command line tool inputs
 
 A CommandLineTool describes a single invocation of a command line program.
 
@@ -40,7 +40,7 @@ inputs:
   counts_input_bam: File
 ```
 
-4. Specifying the program to run
+### 3. Specifying the program to run
 
 Give the name of the program to run in `baseCommand`.
 
@@ -48,7 +48,7 @@ Give the name of the program to run in `baseCommand`.
 baseCommand: featureCounts
 ```
 
-5. Command arguments
+### 4. Command arguments
 
 The easiest way to describe the command line is with an `arguments`
 section.  This takes a comma-separated list of command line arguments.
@@ -68,7 +68,7 @@ arguments: [-T, $(runtime.cores),
 			$(inputs.counts_input_bam)]
 ```
 
-6. Outputs section
+### 5. Outputs section
 
 In CWL, you must explicitly identify the outputs of a program.  This
 associates output parameters with specific files, and enables the
@@ -93,7 +93,7 @@ outputs:
 	  glob: featurecounts.tsv
 ```
 
-7. Running in a container
+### 6. Running in a container
 
 In order to run the tool, it needs to be installed.
 Using software containers, a tool can be pre-installed into a
@@ -123,7 +123,7 @@ hints:
     dockerPull: quay.io/biocontainers/subread:1.5.0p3--0
 ```
 
-8. Running a tool on its own
+### 7. Running a tool on its own
 
 When creating a tool wrapper, it is helpful to run it on its own to test it.
 
@@ -147,7 +147,7 @@ The invocation is also the same:
 cwl-runner featureCounts.cwl featureCounts.yaml
 ```
 
-9. Adding it to the workflow
+### 8. Adding it to the workflow
 
 Now that we have confirmed that it works, we can add it to our workflow.
 We add it to `steps`, connecting the output of samtools to
