@@ -1,3 +1,16 @@
+# Lessons
+
+These lessons go walk through the development of a CWL workflow for
+rnaseq.
+
+| Lesson   | Description |
+|----------|-------------|
+| [Lesson 1](lesson1/lesson1.md) | Turning a shell script into a workflow from existing tool wrappers  |
+| [Lesson 2](lesson2/lesson2.md) | Running and debugging a workflow  |
+| [Lesson 3](lesson3/lesson3.md) | Writing a tool wrapper  |
+| [Lesson 4](lesson4/lesson4.md) | Analyzing multiple samples  |
+| [Lesson 5](lesson5/lesson5.md) | Dynamic Workflow behavior with expressions  |
+| [Lesson 6](lesson6/lesson6.md) | Resources for further learning |
 
 # Acknowledgements
 
