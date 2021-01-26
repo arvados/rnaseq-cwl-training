@@ -17,10 +17,10 @@ steps:
   alignment:
     run: alignment.cwl
     in:
-	  fq: fq
-	  genome: genome
-	  gtf: gtf
-	out: [qc_html, bam_sorted_indexed, featurecounts]
+      fq: fq
+      genome: genome
+      gtf: gtf
+    out: [qc_html, bam_sorted_indexed, featurecounts]
 ```
 
 In the outputs section, all the output sources are from the alignment step:
@@ -71,12 +71,12 @@ run `alignment.cwl` for each value in the list in the `fq` parameter.
 steps:
   alignment:
     run: alignment.cwl
-	scatter: fq
+    scatter: fq
     in:
-	  fq: fq
-	  genome: genome
-	  gtf: gtf
-	out: [qc_html, bam_sorted_indexed, featurecounts]
+      fq: fq
+      genome: genome
+      gtf: gtf
+    out: [qc_html, bam_sorted_indexed, featurecounts]
 ```
 
 Because the scatter produces multiple outputs, each output parameter

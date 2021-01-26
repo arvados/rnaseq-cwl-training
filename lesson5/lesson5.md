@@ -22,6 +22,7 @@ filename.
 ```
 requirements:
   StepInputExpressionRequirement: {}
+
 steps:
   ...
   STAR:

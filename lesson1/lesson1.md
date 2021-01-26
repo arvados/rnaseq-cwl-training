@@ -1,31 +1,47 @@
-# Turning a shell script into a workflow using existing tools
+# Turning a shell script into a workflow by composing existing tools
 
-In this lesson we will turn `rnaseq_analysis_on_input_file.sh` into a workflow.
+## Introduction
 
-## Setting up
+The goal of this training is to walk through the development of a
+best-practices CWL workflow by translating an existing bioinformatics
+shell script into CWL.  Specific knowledge of the biology of RNA-seq
+is *not* a prerequisite for these lessons.
 
-We will create a new git repository and import a library of existing
-tool definitions that will help us build our workflow.
+These lessons are based on "Introduction to RNA-seq using
+high-performance computing (HPC)" lessons developed by members of the
+teaching team at the Harvard Chan Bioinformatics Core (HBC).  The
+original training, which includes additional lectures about the
+biology of RNA-seq can be found here:
 
-Create a new git repository to hold our workflow with this command:
+https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2
 
-```
-git init rnaseq-cwl-training-exercises
-```
+## Background
 
-On Arvados use this:
+RNA-seq is the process of sequencing RNA in a biological sample.  From
+the sequence reads, we want to measure the relative number of RNA
+molecules appearing in the sample that were produced by particular
+genes.  This analysis is called "differential gene expression".
 
-```
-git clone https://github.com/arvados/arvados-vscode-cwl-template.git rnaseq-cwl-training-exercises
-```
+The entire process looks like this:
 
-Next, import bio-cwl-tools with this command:
+![](RNAseqWorkflow.png)
 
-```
-git submodule add https://github.com/common-workflow-library/bio-cwl-tools.git
-```
+For this training, we are only concerned with the middle analytical
+steps (skipping adapter trimming).
 
-## The shell script
+* Quality control (FASTQC)
+* Alignment (mapping)
+* Counting reads associated with genes
+
+## Analysis shell script
+
+This analysis is already available as a Unix shell script, which we
+will refer to in order to build the workflow.
+
+Some of the reasons to use CWL over a plain shell script: portability,
+scalability, ability to run on platforms that are not traditional HPC.
+
+rnaseq_analysis_on_input_file.sh
 
 ```
 #!/bin/bash
@@ -79,6 +95,29 @@ samtools index $counts_input_bam
 
 # Count mapped reads
 featureCounts -T $cores -s 2 -a $gtf -o $counts $counts_input_bam
+```
+
+## Setting up
+
+We will create a new git repository and import a library of existing
+tool definitions that will help us build our workflow.
+
+Create a new git repository to hold our workflow with this command:
+
+```
+git init rnaseq-cwl-training-exercises
+```
+
+On Arvados use this:
+
+```
+git clone https://github.com/arvados/arvados-vscode-cwl-template.git rnaseq-cwl-training-exercises
+```
+
+Next, import bio-cwl-tools with this command:
+
+```
+git submodule add https://github.com/common-workflow-library/bio-cwl-tools.git
 ```
 
 ## Writing the workflow
@@ -160,7 +199,7 @@ steps:
   fastqc:
     run: bio-cwl-tools/fastqc/fastqc_2.cwl
     in:
-	  reads_file: fq
+      reads_file: fq
     out: [html_file]
 ```
 

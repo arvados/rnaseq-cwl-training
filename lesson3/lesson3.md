@@ -64,8 +64,8 @@ describes the resources allocated to running the program.  Here we use
 ```
 arguments: [-T, $(runtime.cores),
             -a, $(inputs.gtf),
-			-o, featurecounts.tsv,
-			$(inputs.counts_input_bam)]
+            -o, featurecounts.tsv,
+            $(inputs.counts_input_bam)]
 ```
 
 ### 5. Outputs section
@@ -89,8 +89,8 @@ output directory called `featurecounts.tsv`
 outputs:
   featurecounts:
     type: File
-	outputBinding:
-	  glob: featurecounts.tsv
+      outputBinding:
+      glob: featurecounts.tsv
 ```
 
 ### 6. Running in a container
@@ -162,10 +162,10 @@ steps:
       ResourceRequirement:
         ramMin: 500
     run: featureCounts.cwl
-	in:
-      counts_input_bam: samtools/bam_sorted_indexed
-	  gtf: gtf
-	out: [featurecounts]
+      in:
+        counts_input_bam: samtools/bam_sorted_indexed
+        gtf: gtf
+      out: [featurecounts]
 ```
 
 We will add the result from featurecounts to the output:
@@ -175,8 +175,7 @@ outputs:
   ...
   featurecounts:
     type: File
-	outputSource: featureCounts/featurecounts
-
+      outputSource: featureCounts/featurecounts
 ```
 
 You should now be able to re-run the workflow and it will run the
