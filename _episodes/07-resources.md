@@ -1,4 +1,14 @@
-# Resources for further learning
+---
+title: " Resources for further learning"
+teaching: 0
+exercises: 0
+questions:
+- "Key question (FIXME)"
+objectives:
+- "First learning objective. (FIXME)"
+keypoints:
+- "First key point. Brief Answer to questions. (FIXME)"
+---
 
 Hopefully you now have a basic grasp of the steps involved in
 developing a CWL workflow. There are many resources out there to

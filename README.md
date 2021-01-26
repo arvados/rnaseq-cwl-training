@@ -1,27 +1,40 @@
-# Lessons
+# FIXME Lesson title
 
-These lessons go walk through the development of a CWL workflow for
-rnaseq.
+[![Create a Slack Account with us](https://img.shields.io/badge/Create_Slack_Account-The_Carpentries-071159.svg)](https://swc-slack-invite.herokuapp.com/)
 
-| Lesson   | Description |
-|----------|-------------|
-| [Lesson 1](lesson1/lesson1.md) | Turning a shell script into a workflow by composing existing tools  |
-| [Lesson 2](lesson2/lesson2.md) | Running and debugging a workflow  |
-| [Lesson 3](lesson3/lesson3.md) | Writing a tool wrapper  |
-| [Lesson 4](lesson4/lesson4.md) | Analyzing multiple samples  |
-| [Lesson 5](lesson5/lesson5.md) | Dynamic Workflow behavior with expressions  |
-| [Lesson 6](lesson6/lesson6.md) | Resources for further learning |
+This repository generates the corresponding lesson website from [The Carpentries](https://carpentries.org/) repertoire of lessons. 
 
-# Acknowledgements
+## Contributing
 
-These CWL lessons are based on "Introduction to RNA-seq using
-high-performance computing (HPC)" lessons developed by members of the
-teaching team at the Harvard Chan Bioinformatics Core (HBC) and
-obtained from
+We welcome all contributions to improve the lesson! Maintainers will do their best to help you if you have any
+questions, concerns, or experience any difficulties along the way.
 
-https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2
+We'd like to ask you to familiarize yourself with our [Contribution Guide](CONTRIBUTING.md) and have a look at
+the [more detailed guidelines][lesson-example] on proper formatting, ways to render the lesson locally, and even
+how to write new episodes.
 
-The original lessons are open access materials distributed under the
-terms of the Creative Commons Attribution license (CC BY 4.0), which
-permits unrestricted use, distribution, and reproduction in any
-medium, provided the original author and source are credited.
+Please see the current list of [issues][FIXME] for ideas for contributing to this
+repository. For making your contribution, we use the GitHub flow, which is
+nicely explained in the chapter [Contributing to a Project](http://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project) in Pro Git
+by Scott Chacon.
+Look for the tag ![good_first_issue](https://img.shields.io/badge/-good%20first%20issue-gold.svg). This indicates that the maintainers will welcome a pull request fixing this issue.  
+
+
+## Maintainer(s)
+
+Current maintainers of this lesson are 
+
+* FIXME
+* FIXME
+* FIXME
+
+
+## Authors
+
+A list of contributors to the lesson can be found in [AUTHORS](AUTHORS)
+
+## Citation
+
+To cite this lesson, please consult with [CITATION](CITATION)
+
+[lesson-example]: https://carpentries.github.io/lesson-example

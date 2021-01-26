@@ -1,4 +1,14 @@
-# Writing a tool wrapper
+---
+title: "Writing a tool wrapper"
+teaching: 0
+exercises: 0
+questions:
+- "Key question (FIXME)"
+objectives:
+- "First learning objective. (FIXME)"
+keypoints:
+- "First key point. Brief Answer to questions. (FIXME)"
+---
 
 It is time to add the last step in the analysis.
 
