@@ -17,7 +17,7 @@ arguments: [-T, $(runtime.cores),
 outputs:
   featurecounts:
     type: File
-      outputBinding:
+    outputBinding:
       glob: featurecounts.tsv
 
 hints:

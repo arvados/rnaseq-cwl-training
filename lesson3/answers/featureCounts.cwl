@@ -20,7 +20,7 @@ arguments: [-T, $(runtime.cores),
 outputs:
   featurecounts:
     type: File
-      outputBinding:
+    outputBinding:
       glob: featurecounts.tsv
 
 ### 6. Running in a container

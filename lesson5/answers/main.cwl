@@ -15,7 +15,7 @@ steps:
       fq: fq
       genome: genome
       gtf: gtf
-    out: [qc_html, bam_sorted_indexed, featurecounts]
+    out: [qc_html, bam_sorted_indexed]
 
   featureCounts:
     requirements:

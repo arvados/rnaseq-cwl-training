@@ -89,7 +89,7 @@ output directory called `featurecounts.tsv`
 outputs:
   featurecounts:
     type: File
-      outputBinding:
+    outputBinding:
       glob: featurecounts.tsv
 ```
 
@@ -162,10 +162,10 @@ steps:
       ResourceRequirement:
         ramMin: 500
     run: featureCounts.cwl
-      in:
-        counts_input_bam: samtools/bam_sorted_indexed
-        gtf: gtf
-      out: [featurecounts]
+    in:
+      counts_input_bam: samtools/bam_sorted_indexed
+      gtf: gtf
+    out: [featurecounts]
 ```
 
 We will add the result from featurecounts to the output:
@@ -175,7 +175,7 @@ outputs:
   ...
   featurecounts:
     type: File
-      outputSource: featureCounts/featurecounts
+    outputSource: featureCounts/featurecounts
 ```
 
 You should now be able to re-run the workflow and it will run the

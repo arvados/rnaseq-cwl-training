@@ -39,10 +39,10 @@ steps:
       ResourceRequirement:
         ramMin: 500
     run: featureCounts.cwl
-      in:
-        counts_input_bam: samtools/bam_sorted_indexed
-        gtf: gtf
-      out: [featurecounts]
+    in:
+      counts_input_bam: samtools/bam_sorted_indexed
+      gtf: gtf
+    out: [featurecounts]
 
 outputs:
   qc_html:
@@ -55,4 +55,4 @@ outputs:
   ### 8. Adding it to the workflow
   featurecounts:
     type: File
-      outputSource: featureCounts/featurecounts
+    outputSource: featureCounts/featurecounts
