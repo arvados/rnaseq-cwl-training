@@ -10,12 +10,10 @@ keypoints:
 - "First key point. Brief Answer to questions. (FIXME)"
 ---
 
-# Analyzing multiple samples
-
 Analyzing a single sample is great, but in the real world you probably
 have a batch of samples that you need to analyze and then compare.
 
-### 1. Subworkflows
+# 1. Subworkflows
 
 In addition to running command line tools, a workflow step can also
 execute another workflow.
@@ -60,7 +58,7 @@ requirements:
 If you run this workflow, you will get exactly the same results as
 before, we've just wrapped the inner workflow with an outer workflow.
 
-### 2. Scattering
+# 2. Scattering
 
 The wrapper lets us do something useful.  We can modify the outer
 workflow to accept a list of files, and then invoke the inner workflow
@@ -116,7 +114,7 @@ requirements:
   ScatterFeatureRequirement: {}
 ```
 
-### 3. Running with list inputs
+# 3. Running with list inputs
 
 The `fq` parameter needs to be a list.  You write a list in yaml by
 starting each list item with a dash.  Example `main-input.yaml`
@@ -151,7 +149,7 @@ gtf:
 
 Now you can run the workflow the same way as in Lesson 2.
 
-### 4. Combining results
+# 4. Combining results
 
 Each instance of the alignment workflow produces its own featureCounts
 file.  However, to be able to compare results easily, we need them a

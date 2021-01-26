@@ -1,40 +1,56 @@
 ---
 title: "Introduction"
-teaching: 0
+teaching: 10
 exercises: 0
 questions:
-- "Key question (FIXME)"
+- "What is CWL?"
+- "What is the goal of this training?"
 objectives:
 - "First learning objective. (FIXME)"
 keypoints:
 - "First key point. Brief Answer to questions. (FIXME)"
 ---
 
-## Introduction
+# Introduction to Common Worklow Language
 
-The goal of this training is to walk through the development of a
-best-practices CWL workflow by translating an existing bioinformatics
-shell script into CWL.  Specific knowledge of the biology of RNA-seq
-is *not* a prerequisite for these lessons.
+The Common Workflow Language (CWL) is an open standard for describing
+analysis workflows and tools in a way that makes them portable and
+scalable across a variety of software and hardware environments, from
+workstations to cluster, cloud, and high performance computing (HPC)
+environments. CWL is designed to meet the needs of data-intensive
+science, such as Bioinformatics, Medical Imaging, Astronomy, High
+Energy Physics, and Machine Learning.
 
-These lessons are based on "Introduction to RNA-seq using
-high-performance computing (HPC)" lessons developed by members of the
-teaching team at the Harvard Chan Bioinformatics Core (HBC).  The
-original training, which includes additional lectures about the
-biology of RNA-seq can be found here:
+# Introduction to this training
 
-https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2
+The goal of this training is to walk the student through the
+development of a best-practices CWL workflow, starting from an
+existing shell script that performs a common bioinformatics analysis.
 
-## Background
+Specific knowledge of the biology of RNA-seq is *not* a prerequisite
+for these lessons.  CWL is not domain specific to bioinformatics.  We
+hope that you will find this training useful even if you work in some
+other field of research.
 
-RNA-seq is the process of sequencing RNA in a biological sample.  From
-the sequence reads, we want to measure the relative number of RNA
-molecules appearing in the sample that were produced by particular
-genes.  This analysis is called "differential gene expression".
+These lessons are based on [Introduction to RNA-seq using
+high-performance computing
+(HPC)](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2) lessons
+developed by members of the teaching team at the Harvard Chan
+Bioinformatics Core (HBC).  The original training, which includes
+additional lectures about the biology of RNA-seq, can be found at that
+link.
+
+# Introduction to the example analysis
+
+RNA-seq is the process of sequencing RNA present in a biological
+sample.  From the sequence reads, we want to measure the relative
+numbers of different RNA molecules appearing in the sample that were
+produced by particular genes.  This analysis is called "differential
+gene expression".
 
 The entire process looks like this:
 
-![](/assets/img/RNAseqWorkflow.png)
+![](/assets/img/RNAseqWorkflow.png){: height="400px"}
 
 For this training, we are only concerned with the middle analytical
 steps (skipping adapter trimming).
@@ -43,13 +59,10 @@ steps (skipping adapter trimming).
 * Alignment (mapping)
 * Counting reads associated with genes
 
-## Analysis shell script
-
-This analysis is already available as a Unix shell script, which we
-will refer to in order to build the workflow.
-
-Some of the reasons to use CWL over a plain shell script: portability,
-scalability, ability to run on platforms that are not traditional HPC.
+In this training, we are not attempting to develop the analysis from
+scratch, instead we we will be starting from an analysis written as a
+shell script.  We will be using the following shell script as a guide to build
+our workflow.
 
 rnaseq_analysis_on_input_file.sh
 

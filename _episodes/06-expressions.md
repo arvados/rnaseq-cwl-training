@@ -1,5 +1,5 @@
 ---
-title: "Dynamic Workflow behavior with expressions"
+title: "Dynamic workflows with expressions"
 teaching: 0
 exercises: 0
 questions:
@@ -10,7 +10,7 @@ keypoints:
 - "First key point. Brief Answer to questions. (FIXME)"
 ---
 
-### 1. Expressions on step inputs
+# 1. Expressions on step inputs
 
 You might have noticed that the output bam files are all named
 `Aligned.sortedByCoord.out.bam`.  This happens because because when we
@@ -64,7 +64,7 @@ adds the remainder of the string, which just is a dot `.`.  This is to
 separate the leading part of our filename from the "Aligned.bam"
 extension that will be added by STAR.
 
-### 2. Organizing output files into Directories
+# 2. Organizing output files into Directories
 
 You probably noticed that all the output files appear in the same
 directory.  You might prefer that each file appears in its own

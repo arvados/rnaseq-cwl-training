@@ -1,5 +1,5 @@
 ---
-title: "Turning a shell script into a workflow by composing existing tools"
+title: "Make a workflow by composing tools"
 teaching: 0
 exercises: 0
 questions:
@@ -10,32 +10,7 @@ keypoints:
 - "First key point. Brief Answer to questions. (FIXME)"
 ---
 
-# Setting up
-
-We will create a new git repository and import a library of existing
-tool definitions that will help us build our workflow.
-
-Create a new git repository to hold our workflow with this command:
-
-```
-git init rnaseq-cwl-training-exercises
-```
-
-On Arvados use this:
-
-```
-git clone https://github.com/arvados/arvados-vscode-cwl-template.git rnaseq-cwl-training-exercises
-```
-
-Next, import bio-cwl-tools with this command:
-
-```
-git submodule add https://github.com/common-workflow-library/bio-cwl-tools.git
-```
-
-# Writing the workflow
-
-## 1. File header
+# 1. File header
 
 Create a new file "main.cwl"
 
@@ -48,7 +23,7 @@ class: Workflow
 label: RNAseq CWL practice workflow
 ```
 
-## 2. Workflow Inputs
+# 2. Workflow Inputs
 
 The purpose of a workflow is to consume some input parameters, run a
 series of steps, and produce output values.
@@ -81,7 +56,7 @@ inputs:
   gtf: File
 ```
 
-## 3. Workflow Steps
+# 3. Workflow Steps
 
 A workflow consists of one or more steps.  This is the `steps` section.
 
@@ -116,7 +91,7 @@ steps:
     out: [html_file]
 ```
 
-## 4. Running alignment with STAR
+# 4. Running alignment with STAR
 
 STAR has more parameters.  Sometimes we want to provide input values
 to a step without making them as workflow-level inputs.  We can do
@@ -138,7 +113,7 @@ this with `{default: N}`
     out: [alignment]
 ```
 
-## 5. Running samtools
+# 5. Running samtools
 
 The third step is to generate an index for the aligned BAM.
 
@@ -157,7 +132,7 @@ step will not run until the `STAR` step has completed successfully.
     out: [bam_sorted_indexed]
 ```
 
-## 6. featureCounts
+# 6. featureCounts
 
 As of this writing, the `subread` package that provides
 `featureCounts` is not available in bio-cwl-tools (and if it has been
@@ -165,7 +140,7 @@ added since writing this, let's pretend that it isn't there.)  We will
 go over how to write a CWL wrapper for a command line tool in
 lesson 3.  For now, we will leave off the final step.
 
-## 7. Workflow Outputs
+# 7. Workflow Outputs
 
 The last thing to do is declare the workflow outputs in the `outputs` section.
 

@@ -10,9 +10,7 @@ keypoints:
 - "First key point. Brief Answer to questions. (FIXME)"
 ---
 
-# Running and debugging a workflow
-
-### 1. The input parameter file
+# 1. The input parameter file
 
 CWL input values are provided in the form of a YAML or JSON file.
 Create one by right clicking on the explorer, select "New File" and
@@ -26,7 +24,7 @@ When setting inputs, Files and Directories are given as an object with
 `class: File` or `class: Directory`.  This distinguishes them from
 plain strings that may or may not be file paths.
 
-Note: if you don't have example sequence data or the STAR index files, see the Appendix below.
+Note: if you don't have example sequence data or the STAR index files, see [setup](/setup.html).
 
 ```
 fq:
@@ -56,7 +54,7 @@ gtf:
   location: keep:9178fe1b80a08a422dbe02adfd439764+925/reference_data/chr1-hg19_genes.gtf
 ```
 
-### 2. Running the workflow
+# 2. Running the workflow
 
 Type this into the terminal:
 
@@ -64,7 +62,7 @@ Type this into the terminal:
 cwl-runner main.cwl main-input.yaml
 ```
 
-### 3. Debugging the workflow
+# 3. Debugging the workflow
 
 A workflow can fail for many reasons: some possible reasons include
 bad input, bugs in the code, or running out memory.  In this case, the
@@ -92,7 +90,7 @@ Container exited with code: 137
 
 If this happens, you will need to request more RAM.
 
-### 4. Setting runtime RAM requirements
+# 4. Setting runtime RAM requirements
 
 By default, a step is allocated 256 MB of RAM.  From the STAR error message:
 
@@ -119,7 +117,7 @@ Resource requirements you can set include:
 
 After setting the RAM requirements, re-run the workflow.
 
-### 5. Workflow results
+# 5. Workflow results
 
 The CWL runner will print a results JSON object to standard output.  It will look something like this (it may include additional fields).
 
@@ -152,51 +150,3 @@ The CWL runner will print a results JSON object to standard output.  It will loo
 This has the same structure as `main-input.yaml`.  The each output
 parameter is listed, with the `location` field of each `File` object
 indicating where the output file can be found.
-
-# Appendix
-
-## Downloading sample and reference data
-
-Start from your rnaseq-cwl-exercises directory.
-
-```
-mkdir rnaseq
-cd rnaseq
-wget --mirror --no-parent --no-host --cut-dirs=1 https://download.pirca.arvadosapi.com/c=9178fe1b80a08a422dbe02adfd439764+925/
-```
-
-## Downloading or generating STAR index
-
-Running STAR requires index files generated from the reference.
-
-This is a rather large download (4 GB).  Depending on your bandwidth, it may be faster to generate it yourself.
-
-### Downloading
-
-```
-mkdir hg19-chr1-STAR-index
-cd hg19-chr1-STAR-index
-wget --mirror --no-parent --no-host --cut-dirs=1 https://download.pirca.arvadosapi.com/c=02a12ce9e2707610991bd29d38796b57+2912/
-```
-
-### Generating
-
-Create `chr1-star-index.yaml`:
-
-```
-InputFiles:
-  - class: File
-    location: rnaseq/reference_data/chr1.fa
-    format: http://edamontology.org/format_1930
-IndexName: 'hg19-chr1-STAR-index'
-Gtf:
-  class: File
-  location: rnaseq/reference_data/chr1-hg19_genes.gtf
-Overhang: 99
-```
-
-Generate the index with your local cwl-runner.
-
-```
-cwl-runner bio-cwl-tools/STAR/STAR-Index.cwl chr1-star-index.yaml
-```
