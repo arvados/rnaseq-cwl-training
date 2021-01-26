@@ -249,8 +249,8 @@ step will not run until the `STAR` step has completed successfully.
 As of this writing, the `subread` package that provides
 `featureCounts` is not available in bio-cwl-tools (and if it has been
 added since writing this, let's pretend that it isn't there.)  We will
-dive into how to write a CWL wrapper for a command line tool in
-lesson 2.  For now, we will leave off the final step.
+go over how to write a CWL wrapper for a command line tool in
+lesson 3.  For now, we will leave off the final step.
 
 ### 7. Workflow Outputs
 
