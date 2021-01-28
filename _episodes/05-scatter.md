@@ -1,26 +1,33 @@
 ---
-title: " Analyzing multiple samples"
-teaching: 0
+title: "Analyzing Multiple Samples"
+teaching: 20
 exercises: 0
 questions:
-- "Key question (FIXME)"
+- "How can you run the same workflow over multiple samples?"
 objectives:
-- "First learning objective. (FIXME)"
+- "Modify the workflow to process multiple samples, then perform a joint analysis."
 keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
+- "Separate the part of the workflow that you want to run multiple times into a subworkflow."
+- "Use a scatter step to run the subworkflow over a list of inputs."
+- "The result of a scatter is an array, which can be used in a combine step to get a single result."
 ---
 
-Analyzing a single sample is great, but in the real world you probably
-have a batch of samples that you need to analyze and then compare.
+In the previous lesson, we completed converting the function of the
+original source shell script into CWL.  This lesson expands the scope
+by demonstrating what changes to make to the workflow to be able to
+analyze multiple samples in parallel.
 
-# 1. Subworkflows
+# Subworkflows
 
 In addition to running command line tools, a workflow step can also
 execute another workflow.
 
-Let's copy "main.cwl" to "alignment.cwl".
+First, copy `main.cwl` to `alignment.cwl`.
 
-Now, edit open "main.cwl" for editing.  We are going to replace the `steps` and `outputs` sections.
+Next, open `main.cwl` for editing.  We are going to replace the `steps` and `outputs` sections.
+
+Remove all the steps and replace them with a single `alignment` step
+which invokes the `alignment.cwl` we just copied.
 
 ```
 steps:
@@ -32,8 +39,9 @@ steps:
       gtf: gtf
     out: [qc_html, bam_sorted_indexed, featurecounts]
 ```
+{: .language-yaml }
 
-In the outputs section, all the output sources are from the alignment step:
+In the `outputs` section, all the output sources are from the alignment step:
 
 ```
 outputs:
@@ -47,23 +55,27 @@ outputs:
     type: File
     outputSource: alignment/featurecounts
 ```
+{: .language-yaml }
 
-We also need a little boilerplate to tell the workflow runner that we want to use subworkflows:
+We also need add "SubworkflowFeatureRequirement" to tell the workflow
+runner that we are using subworkflows:
 
 ```
 requirements:
   SubworkflowFeatureRequirement: {}
 ```
+{: .language-yaml }
 
 If you run this workflow, you will get exactly the same results as
-before, we've just wrapped the inner workflow with an outer workflow.
+before, as all we have done so far is to wrap the inner workflow with
+an outer workflow.
 
-# 2. Scattering
+# Scattering
 
-The wrapper lets us do something useful.  We can modify the outer
-workflow to accept a list of files, and then invoke the inner workflow
-step for every one of those files.  We will need to modify the
-`inputs`, `steps`, `outputs`, and `requirements` sections.
+The "wrapper" step lets us do something useful.  We can modify the
+outer workflow to accept a list of files, and then invoke the inner
+workflow step for every one of those files.  We will need to modify
+the `inputs`, `steps`, `outputs`, and `requirements` sections.
 
 First we change the `fq` parameter to expect a list of files:
 
@@ -73,9 +85,11 @@ inputs:
   genome: Directory
   gtf: File
 ```
+{: .language-yaml }
 
-Next, we add `scatter` to the alignment step.  The means it will
-run `alignment.cwl` for each value in the list in the `fq` parameter.
+Next, we add `scatter` to the alignment step.  The means we want to
+run run `alignment.cwl` for each value in the list in the `fq`
+parameter.
 
 ```
 steps:
@@ -88,6 +102,7 @@ steps:
       gtf: gtf
     out: [qc_html, bam_sorted_indexed, featurecounts]
 ```
+{: .language-yaml }
 
 Because the scatter produces multiple outputs, each output parameter
 becomes a list as well:
@@ -104,17 +119,19 @@ outputs:
     type: File[]
     outputSource: alignment/featurecounts
 ```
+{: .language-yaml }
 
-Finally, we need a little more boilerplate to tell the workflow runner
-that we want to use scatter:
+We also need add "ScatterFeatureRequirement" to tell the workflow
+runner that we are using scatter:
 
 ```
 requirements:
   SubworkflowFeatureRequirement: {}
   ScatterFeatureRequirement: {}
 ```
+{: .language-yaml }
 
-# 3. Running with list inputs
+# Input parameter lists
 
 The `fq` parameter needs to be a list.  You write a list in yaml by
 starting each list item with a dash.  Example `main-input.yaml`
@@ -146,20 +163,21 @@ gtf:
   class: File
   location: rnaseq/reference_data/chr1-hg19_genes.gtf
 ```
+{: .language-yaml }
 
-Now you can run the workflow the same way as in Lesson 2.
+If you run the workflow, you will get results for each one of the
+input fastq files.
 
-# 4. Combining results
+# Combining results
 
-Each instance of the alignment workflow produces its own featureCounts
-file.  However, to be able to compare results easily, we need them a
-single file with all the results.
+Each instance of the alignment workflow produces its own
+`featurecounts.tsv` file.  However, to be able to compare results
+easily, we would like single file with all the results.
 
-The easiest way to do this is to run `featureCounts` just once at the
-end of the workflow, with all the bam files listed on the command
-line.
+We can modify the workflow to run `featureCounts` once at the end of
+the workflow, taking all the bam files listed on the command line.
 
-We'll need to modify a few things.
+We will need to change a few things.
 
 First, in `featureCounts.cwl` we need to modify it to accept either a
 single bam file or list of bam files.
@@ -171,6 +189,7 @@ inputs:
    - File
    - File[]
 ```
+{: .language-yaml }
 
 Second, in `alignment.cwl` we need to remove the `featureCounts` step from alignment.cwl, as well as the `featurecounts` output parameter.
 
@@ -197,6 +216,7 @@ steps:
       gtf: gtf
     out: [featurecounts]
 ```
+{: .language-yaml }
 
 Last, we modify the `featurecounts` output parameter.  Instead of a
 list of files produced by the `alignment` step, it is now a single
@@ -209,5 +229,7 @@ outputs:
     type: File
     outputSource: featureCounts/featurecounts
 ```
+{: .language-yaml }
 
-Run this workflow to get a single `featurecounts.tsv` file with a column for each bam file.
+Run this workflow to get a single `featurecounts.tsv` file with a
+column for each bam file.

@@ -1,6 +1,6 @@
 ---
 title: " Resources for further learning"
-teaching: 0
+teaching: 10
 exercises: 0
 questions:
 - "Key question (FIXME)"

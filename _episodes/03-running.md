@@ -1,20 +1,25 @@
 ---
-title: "Running and debugging a workflow"
-teaching: 0
-exercises: 0
+title: "Running and Debugging a Workflow"
+teaching: 10
+exercises: 20
 questions:
-- "Key question (FIXME)"
+- "How do I provide input to run a workflow?"
+- "What should I do if the workflow fails?"
 objectives:
-- "First learning objective. (FIXME)"
+- "Write an input parameter file."
+- "Execute the workflow."
+- "Diagnose workflow errors."
 keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
+- "The input parameter file is a YAML file with values for each input parameter."
+- "A common reason for a workflow step fails is insufficient RAM."
+- "Use ResourceRequirement to set the amount of RAM to be allocated to the job."
+- "Output parameter values are printed as JSON to standard output at the end of the run."
 ---
 
-# 1. The input parameter file
+# The input parameter file
 
 CWL input values are provided in the form of a YAML or JSON file.
-Create one by right clicking on the explorer, select "New File" and
-create a called file "main-input.yaml".
+create a called file
 
 This file gives the values for parameters declared in the `inputs`
 section of our workflow.  Our workflow takes `fq`, `genome` and `gtf`
@@ -25,6 +30,8 @@ When setting inputs, Files and Directories are given as an object with
 plain strings that may or may not be file paths.
 
 Note: if you don't have example sequence data or the STAR index files, see [setup](/setup.html).
+
+main-input.yaml
 
 ```
 fq:
@@ -38,35 +45,32 @@ gtf:
   class: File
   location: rnaseq/reference_data/chr1-hg19_genes.gtf
 ```
+{: .language-yaml }
 
-On Arvados, do this:
+> ## Running the workflow
+>
+> Type this into the terminal:
+>
+> ```
+> cwl-runner main.cwl main-input.yaml
+> ```
+>
+> This may take a few minutes to run, and will print some amount of
+> logging.  The logging you see, how access other logs, and how to
+> track workflow progress will depend on your CWL runner platform.
+>
+> {: .language-bash }
+{: .challenge }
 
-```
-fq:
-  class: File
-  location: keep:9178fe1b80a08a422dbe02adfd439764+925/raw_fastq/Mov10_oe_1.subset.fq
-  format: http://edamontology.org/format_1930
-genome:
-  class: Directory
-  location: keep:02a12ce9e2707610991bd29d38796b57+2912
-gtf:
-  class: File
-  location: keep:9178fe1b80a08a422dbe02adfd439764+925/reference_data/chr1-hg19_genes.gtf
-```
+# Debugging the workflow
 
-# 2. Running the workflow
-
-Type this into the terminal:
-
-```
-cwl-runner main.cwl main-input.yaml
-```
-
-# 3. Debugging the workflow
+Depending on whether and how your workflow platform enforces memory
+limits, your workflow may fail.  Let's talk about what to do when a
+workflow fails.
 
 A workflow can fail for many reasons: some possible reasons include
-bad input, bugs in the code, or running out memory.  In this case, the
-STAR workflow might fail with an out of memory error.
+bad input, bugs in the code, or running out memory.  In our example,
+the STAR workflow may fail with an out of memory error.
 
 To help diagnose these errors, the workflow runner produces logs that
 record what happened, either in the terminal or the web interface.
@@ -90,13 +94,13 @@ Container exited with code: 137
 
 If this happens, you will need to request more RAM.
 
-# 4. Setting runtime RAM requirements
+# Setting runtime RAM requirements
 
 By default, a step is allocated 256 MB of RAM.  From the STAR error message:
 
 > Check if you have enough RAM 5711762337 bytes
 
-We can see that STAR requires quite a bit more RAM than that.  To
+We can see that STAR requires quite a bit more RAM than 256 MB.  To
 request more RAM, add a "requirements" section with
 "ResourceRequirement" to the "STAR" step:
 
@@ -104,9 +108,11 @@ request more RAM, add a "requirements" section with
   STAR:
     requirements:
       ResourceRequirement:
-        ramMin: 8000
+        ramMin: 9000
     run: bio-cwl-tools/STAR/STAR-Align.cwl
+	...
 ```
+{: .language-yaml }
 
 Resource requirements you can set include:
 
@@ -117,10 +123,9 @@ Resource requirements you can set include:
 
 After setting the RAM requirements, re-run the workflow.
 
-# 5. Workflow results
+# Workflow results
 
 The CWL runner will print a results JSON object to standard output.  It will look something like this (it may include additional fields).
-
 
 ```
 {
@@ -146,7 +151,8 @@ The CWL runner will print a results JSON object to standard output.  It will loo
     }
 }
 ```
+{: .language-yaml }
 
-This has the same structure as `main-input.yaml`.  The each output
+This has a similar structure as `main-input.yaml`.  The each output
 parameter is listed, with the `location` field of each `File` object
 indicating where the output file can be found.

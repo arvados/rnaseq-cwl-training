@@ -7,9 +7,6 @@ inputs:
   genome: Directory
   gtf: File
 
-requirements:
-  StepInputExpressionRequirement: {}
-
 steps:
   fastqc:
     run: bio-cwl-tools/fastqc/fastqc_2.cwl
@@ -18,6 +15,7 @@ steps:
     out: [html_file]
 
   STAR:
+    # 4. Setting runtime RAM requirements
     requirements:
       ResourceRequirement:
         ramMin: 9000
@@ -28,8 +26,6 @@ steps:
       ForwardReads: fq
       OutSAMtype: {default: BAM}
       OutSAMunmapped: {default: Within}
-      ### 1. Expressions on step inputs
-      OutFileNamePrefix: {valueFrom: "$(inputs.ForwardReads.nameroot)."}
     out: [alignment]
 
   samtools:

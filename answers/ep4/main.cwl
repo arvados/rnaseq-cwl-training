@@ -17,7 +17,7 @@ steps:
   STAR:
     requirements:
       ResourceRequirement:
-        ramMin: 6000
+        ramMin: 9000
     run: bio-cwl-tools/STAR/STAR-Align.cwl
     in:
       RunThreadN: {default: 4}
@@ -52,7 +52,7 @@ outputs:
     type: File
     outputSource: samtools/bam_sorted_indexed
 
-  ### 8. Adding it to the workflow
+  # Adding it to the workflow
   featurecounts:
     type: File
     outputSource: featureCounts/featurecounts

@@ -1,16 +1,16 @@
 ---
-title: "Dynamic workflows with expressions"
-teaching: 0
+title: "Dynamic Workflow Behavior"
+teaching: 20
 exercises: 0
 questions:
-- "Key question (FIXME)"
+- "How can I adjust workflow behavior at runtime?"
 objectives:
-- "First learning objective. (FIXME)"
+- "Set "
 keypoints:
 - "First key point. Brief Answer to questions. (FIXME)"
 ---
 
-# 1. Expressions on step inputs
+# Expressions on step inputs
 
 You might have noticed that the output bam files are all named
 `Aligned.sortedByCoord.out.bam`.  This happens because because when we
@@ -20,6 +20,7 @@ During workflow execution, this is usually not a problem.  The
 workflow runner is smart enough to know that these files are different
 and keep them separate.  This can even make development easier by not
 having to worry about assigning unique file names to every file.
+Also, if we intend to discard the BAM files as intermediate results
 
 However, it is a problem for humans interpreting the output.  We can
 fix this by setting the parameter `OutFileNamePrefix` on STAR.  We
@@ -42,6 +43,7 @@ steps:
       ...
       OutFileNamePrefix: {valueFrom: "$(inputs.ForwardReads.nameroot)."}
 ```
+{: .language-yaml }
 
 The code between `$(...)` is called an "expression".  It is evaluated
 when setting up the step to run, and the expression is replaced by the
@@ -64,7 +66,7 @@ adds the remainder of the string, which just is a dot `.`.  This is to
 separate the leading part of our filename from the "Aligned.bam"
 extension that will be added by STAR.
 
-# 2. Organizing output files into Directories
+# Organizing output files into Directories
 
 You probably noticed that all the output files appear in the same
 directory.  You might prefer that each file appears in its own
@@ -129,6 +131,7 @@ expression: |-
   return {"dirs": dirs};
   }
 ```
+{: .language-yaml }
 
 Then change `main.cwl`:
 
@@ -150,3 +153,4 @@ outputs:
     type: File
     outputSource: featureCounts/featurecounts
 ```
+{: .language-yaml }

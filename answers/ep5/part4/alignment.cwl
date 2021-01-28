@@ -17,7 +17,7 @@ steps:
   STAR:
     requirements:
       ResourceRequirement:
-        ramMin: 6000
+        ramMin: 9000
     run: bio-cwl-tools/STAR/STAR-Align.cwl
     in:
       RunThreadN: {default: 4}
