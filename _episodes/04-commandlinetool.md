@@ -1,7 +1,7 @@
 ---
 title: "Writing a Tool Wrapper"
-teaching: 15
-exercises: 20
+teaching: 20
+exercises: 30
 questions:
 - "What are the key components of a tool wrapper?"
 - "How do I use software containers to supply the software I want to run?"
@@ -29,6 +29,11 @@ This will use the "featureCounts" tool from the "subread" package.
 
 # File header
 
+A CommandLineTool describes a single invocation of a command line
+program.  It consumes some input parameters, runs a program, and
+captures output, mainly in in the form of files produced by the
+program.
+
 Create a new file "featureCounts.cwl"
 
 Let's start with the header.  This is very similar to the workflow, except that we use `class: CommandLineTool`.
@@ -42,21 +47,29 @@ label: featureCounts tool
 
 # Command line tool inputs
 
-A CommandLineTool describes a single invocation of a command line program.
+The `inputs` section describes input parameters with the same form as
+the Workflow `inputs` section.
 
-It consumes some input parameters, runs a program, and captures
-output, mainly in in the form of files produced by the program.
-
-The variables used in the bash script are `$cores`, `$gtf`, `$counts` and `$counts_input_bam`.
-
-This gives us two file inputs, `gtf` and `counts_input_bam` which we can declare in our `inputs` section:
-
-```
-inputs:
-  gtf: File
-  counts_input_bam: File
-```
-{: .language-yaml }
+> ## Exercise
+>
+> The variables used in the bash script are `$cores`, `$gtf`, `$counts` and `$counts_input_bam`.
+>
+> * $cores is the number of CPU cores to use.
+> * $gtf is the input .gtf file
+> * $counts is the name we will give to the output file
+> * $counts_input_bam is the input .bam file
+>
+> Write the `inputs` section for the File inputs `gtf` and `counts_input_bam`.
+>
+> > ## Solution
+> > ```
+> > inputs:
+> >   gtf: File
+> >   counts_input_bam: File
+> > ```
+> > {: .language-yaml }
+> {: .solution}
+{: .challenge}
 
 # Specifying the program to run
 
@@ -188,7 +201,7 @@ When creating a tool wrapper, it is helpful to run it on its own to test it.
 The input to a single tool is the same kind of input parameters file
 that we used as input to a workflow in the previous lesson.
 
-featureCounts.yaml:
+`featureCounts.yaml`
 
 ```
 counts_input_bam:
@@ -200,19 +213,22 @@ gtf:
 ```
 {: .language-yaml }
 
-The invocation is also the same:
-
-```
-cwl-runner featureCounts.cwl featureCounts.yaml
-```
-{: .language-bash }
+> ## Running the tool
+>
+> Run the tool on its own to confirm it has correct behavior:
+>
+> ```
+> cwl-runner featureCounts.cwl featureCounts.yaml
+> ```
+> {: .language-bash }
+{: .challenge }
 
 # Adding it to the workflow
 
+Now that we have confirmed that the tool wrapper works, it is time to
+add it to our workflow.
+
 > ## Exercise
->
-> Now that we have confirmed that the tool wrapper works, it is time
-> to add it to our workflow.
 >
 >   1. Add a new step called `featureCounts` that runs our tool
 >      wrapper.  The new step should take input from

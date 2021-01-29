@@ -1,7 +1,7 @@
 ---
 title: "Analyzing Multiple Samples"
-teaching: 20
-exercises: 0
+teaching: 30
+exercises: 30
 questions:
 - "How can you run the same workflow over multiple samples?"
 objectives:
@@ -66,9 +66,13 @@ requirements:
 ```
 {: .language-yaml }
 
-If you run this workflow, you will get exactly the same results as
-before, as all we have done so far is to wrap the inner workflow with
-an outer workflow.
+> ## Running the workflow
+>
+> Run this workflow.  You should get exactly the same results as
+> before, as all we have done so far is to wrap the inner workflow with
+> an outer workflow.
+>
+{: .challenge }
 
 # Scattering
 
@@ -165,8 +169,12 @@ gtf:
 ```
 {: .language-yaml }
 
-If you run the workflow, you will get results for each one of the
-input fastq files.
+> ## Running the workflow
+>
+> Run this workflow.  You will now get results for each one of the
+> input fastq files.
+>
+{: .challenge }
 
 # Combining results
 
@@ -231,5 +239,10 @@ outputs:
 ```
 {: .language-yaml }
 
-Run this workflow to get a single `featurecounts.tsv` file with a
-column for each bam file.
+> ## Running the workflow
+>
+> Run this workflow.  You will still have separate results from fastq
+> and and STAR, but now you will only have a single
+> `featurecounts.tsv` file with a column for each bam file.
+>
+{: .challenge }

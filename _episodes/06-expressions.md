@@ -1,13 +1,15 @@
 ---
 title: "Dynamic Workflow Behavior"
 teaching: 20
-exercises: 0
+exercises: 10
 questions:
-- "How can I adjust workflow behavior at runtime?"
+- "What kind of custom logic can happen between steps?"
 objectives:
-- "Set "
+- "Customize the STAR output filename to use the input filename."
+- "Organize files into directories."
 keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
+- "CWL expressions allow you to use custom logic to determine input parameter values."
+- "CWL ExpressionTool can be used to reshape data, such as declaring directories that should contain output files."
 ---
 
 # Expressions on step inputs
@@ -154,3 +156,11 @@ outputs:
     outputSource: featureCounts/featurecounts
 ```
 {: .language-yaml }
+
+> ## Running the workflow
+>
+> Run the workflow.  Look at the output.  The BAM and fastqc files
+> should now be organized into directories, with better naming of the
+> bam files.
+>
+{: .challenge }

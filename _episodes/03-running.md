@@ -1,6 +1,6 @@
 ---
 title: "Running and Debugging a Workflow"
-teaching: 10
+teaching: 15
 exercises: 20
 questions:
 - "How do I provide input to run a workflow?"
@@ -121,7 +121,11 @@ Resource requirements you can set include:
 * tmpdirMin: temporary directory available space
 * outdirMin: output directory available space
 
-After setting the RAM requirements, re-run the workflow.
+> ## Running the workflow
+>
+> Now that you've fixed the workflow, run it again.
+>
+{: .challenge }
 
 # Workflow results
 

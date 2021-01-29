@@ -3,11 +3,11 @@ title: " Resources for further learning"
 teaching: 10
 exercises: 0
 questions:
-- "Key question (FIXME)"
+- "Where should I go to learn more?"
 objectives:
-- "First learning objective. (FIXME)"
+- "Become a part of the CWL community."
 keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
+- "Learn more advanced techniques from CWL user guide, by asking questions on the CWL forum and chat channel, and reading the specification."
 ---
 
 Hopefully you now have a basic grasp of the steps involved in

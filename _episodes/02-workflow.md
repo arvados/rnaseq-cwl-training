@@ -1,6 +1,6 @@
 ---
 title: "Create a Workflow by Composing Tools"
-teaching: 20
+teaching: 30
 exercises: 10
 questions:
 - "What is the syntax of CWL?"
