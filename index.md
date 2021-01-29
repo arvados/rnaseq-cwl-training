@@ -9,14 +9,6 @@ best-practices CWL workflow.  At the conclusion of this training, you
 should have a grasp of the essential components of a workflow, and
 have a basis for learning more.
 
-These lessons are based on [Introduction to RNA-seq using
-high-performance computing
-(HPC)](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2) lessons
-developed by members of the teaching team at the Harvard Chan
-Bioinformatics Core (HBC).  The original training, which includes
-additional lectures about the biology of RNA-seq, can be found at that
-link.
-
 > ## Prerequisites
 >
 > This training assumes some basic familiarity with editing text files,
@@ -30,5 +22,13 @@ link.
 > find this training useful regardless of your area of research.
 >
 {: .prereq}
+
+These lessons are based on [Introduction to RNA-seq using
+high-performance computing
+(HPC)](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2) lessons
+developed by members of the teaching team at the Harvard Chan
+Bioinformatics Core (HBC).  The original training, which includes
+additional lectures about the biology of RNA-seq, can be found at that
+link.
 
 {% include links.md %}

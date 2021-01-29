@@ -6,7 +6,7 @@ questions:
 - "What is CWL?"
 - "What is the goal of this training?"
 objectives:
-- "Understand how the training will be motivated by an example analysis."
+- "Gain a high level understanding of the example analysis."
 keypoints:
 - "Common Workflow Language is a standard for describing data analysis workflows"
 - "We will use an bioinformatics RNA-seq analysis as an example workflow, but does not require in-depth knowledge of biology."
@@ -39,7 +39,7 @@ expression".
 
 The entire process looks like this:
 
-![](/assets/img/RNAseqWorkflow.png){: height="400px"}
+![](../assets/img/RNAseqWorkflow.png){: height="400px"}
 
 For this training, we are only concerned with the middle analytical
 steps (skipping adapter trimming).
