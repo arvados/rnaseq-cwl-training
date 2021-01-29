@@ -18,8 +18,9 @@ have a basis for learning more.
 > for these lessons.  Although orignally developed to solve big data
 > problems in genomics, CWL is not domain specific to bioinformatics,
 > and is used in a number of other fields including medical imaging,
-> astronomy, geospatial, and machine learning.  We hope that you will
-> find this training useful regardless of your area of research.
+> astronomy, geospatial imaging, and machine learning.  We hope that
+> you will find this training useful regardless of your area of
+> research.
 >
 {: .prereq}
 
