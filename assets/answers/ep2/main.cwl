@@ -25,6 +25,7 @@ steps:
       GenomeDir: genome
       ForwardReads: fq
       OutSAMtype: {default: BAM}
+      SortedByCoordinate: {default: true}
       OutSAMunmapped: {default: Within}
     out: [alignment]
 

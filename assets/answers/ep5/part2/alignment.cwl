@@ -24,6 +24,7 @@ steps:
       GenomeDir: genome
       ForwardReads: fq
       OutSAMtype: {default: BAM}
+      SortedByCoordinate: {default: true}
       OutSAMunmapped: {default: Within}
     out: [alignment]
 
@@ -33,6 +34,16 @@ steps:
       bam_sorted: STAR/alignment
     out: [bam_sorted_indexed]
 
+  featureCounts:
+    requirements:
+      ResourceRequirement:
+        ramMin: 500
+    run: featureCounts.cwl
+    in:
+      counts_input_bam: samtools/bam_sorted_indexed
+      gtf: gtf
+    out: [featurecounts]
+
 outputs:
   qc_html:
     type: File
@@ -40,3 +51,7 @@ outputs:
   bam_sorted_indexed:
     type: File
     outputSource: samtools/bam_sorted_indexed
+
+  featurecounts:
+    type: File
+    outputSource: featureCounts/featurecounts

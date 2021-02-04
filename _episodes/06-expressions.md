@@ -164,3 +164,10 @@ outputs:
 > bam files.
 >
 {: .challenge }
+
+> ## Episode solution
+> * <a href="{% link assets/answers/ep6/main.cwl %}">main.cwl</a>
+> * <a href="{% link assets/answers/ep6/alignment.cwl %}">alignment.cwl</a>
+> * <a href="{% link assets/answers/ep6/featureCounts.cwl %}">featureCounts.cwl</a>
+> * <a href="{% link assets/answers/ep6/subdirs.cwl %}">subdirs.cwl</a>
+{: .solution}

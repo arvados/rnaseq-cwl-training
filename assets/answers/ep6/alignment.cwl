@@ -7,6 +7,9 @@ inputs:
   genome: Directory
   gtf: File
 
+requirements:
+  StepInputExpressionRequirement: {}
+
 steps:
   fastqc:
     run: bio-cwl-tools/fastqc/fastqc_2.cwl
@@ -24,7 +27,10 @@ steps:
       GenomeDir: genome
       ForwardReads: fq
       OutSAMtype: {default: BAM}
+      SortedByCoordinate: {default: true}
       OutSAMunmapped: {default: Within}
+      ### 1. Expressions on step inputs
+      OutFileNamePrefix: {valueFrom: "$(inputs.ForwardReads.nameroot)."}
     out: [alignment]
 
   samtools:
@@ -33,16 +39,6 @@ steps:
       bam_sorted: STAR/alignment
     out: [bam_sorted_indexed]
 
-  featureCounts:
-    requirements:
-      ResourceRequirement:
-        ramMin: 500
-    run: featureCounts.cwl
-    in:
-      counts_input_bam: samtools/bam_sorted_indexed
-      gtf: gtf
-    out: [featurecounts]
-
 outputs:
   qc_html:
     type: File
@@ -50,7 +46,3 @@ outputs:
   bam_sorted_indexed:
     type: File
     outputSource: samtools/bam_sorted_indexed
-
-  featurecounts:
-    type: File
-    outputSource: featureCounts/featurecounts

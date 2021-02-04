@@ -74,6 +74,12 @@ requirements:
 >
 {: .challenge }
 
+> ## Part 1 solution
+> * <a href="{% link assets/answers/ep5/part1/main.cwl %}">main.cwl</a>
+> * <a href="{% link assets/answers/ep5/part1/alignment.cwl %}">alignment.cwl</a>
+> * <a href="{% link assets/answers/ep5/part1/featureCounts.cwl %}">featureCounts.cwl</a>
+{: .solution}
+
 # Scattering
 
 The "wrapper" step lets us do something useful.  We can modify the
@@ -134,6 +140,12 @@ requirements:
   ScatterFeatureRequirement: {}
 ```
 {: .language-yaml }
+
+> ## Part 2 solution
+> * <a href="{% link assets/answers/ep5/part2/main.cwl %}">main.cwl</a>
+> * <a href="{% link assets/answers/ep5/part2/alignment.cwl %}">alignment.cwl</a>
+> * <a href="{% link assets/answers/ep5/part2/featureCounts.cwl %}">featureCounts.cwl</a>
+{: .solution}
 
 # Input parameter lists
 
@@ -246,3 +258,9 @@ outputs:
 > `featurecounts.tsv` file with a column for each bam file.
 >
 {: .challenge }
+
+> ## Episode solution
+> * <a href="{% link assets/answers/ep5/part4/main.cwl %}">main.cwl</a>
+> * <a href="{% link assets/answers/ep5/part4/alignment.cwl %}">alignment.cwl</a>
+> * <a href="{% link assets/answers/ep5/part4/featureCounts.cwl %}">featureCounts.cwl</a>
+{: .solution}

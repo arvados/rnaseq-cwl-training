@@ -31,8 +31,11 @@ plain strings that may or may not be file paths.
 
 Note: if you don't have example sequence data or the STAR index files, see [setup](/setup.html).
 
-main-input.yaml
+<div>
+{% tabs input %}
 
+{% tab input generic %}
+main-input.yaml
 ```
 fq:
   class: File
@@ -54,13 +57,40 @@ gtf:
 > ```
 > cwl-runner main.cwl main-input.yaml
 > ```
+> {: .language-bash }
 >
 > This may take a few minutes to run, and will print some amount of
 > logging.  The logging you see, how access other logs, and how to
 > track workflow progress will depend on your CWL runner platform.
->
-> {: .language-bash }
 {: .challenge }
+
+{% endtab %}
+
+{% tab input arvados %}
+main-input.yaml
+```
+fq:
+  class: File
+  location: keep:9178fe1b80a08a422dbe02adfd439764+925/raw_fastq/Mov10_oe_1.subset.fq
+  format: http://edamontology.org/format_1930
+genome:
+  class: Directory
+  location: keep:02a12ce9e2707610991bd29d38796b57+2912
+gtf:
+  class: File
+  location: 9178fe1b80a08a422dbe02adfd439764+925/reference_data/chr1-hg19_genes.gtf
+```
+{: .language-yaml }
+
+> ## Running the workflow
+>
+> If you are using VSCode with Arvados tasks, select `main.cwl` and
+> then use the `Run CWL Workflow on Arvados` task.
+>
+{: .challenge }
+{% endtab %}
+{% endtabs %}
+</div>
 
 # Debugging the workflow
 
@@ -127,10 +157,18 @@ Resource requirements you can set include:
 >
 {: .challenge }
 
+> ## Episode solution
+> * <a href="{% link assets/answers/ep3/main.cwl %}">main.cwl</a>
+{: .solution}
+
 # Workflow results
 
 The CWL runner will print a results JSON object to standard output.  It will look something like this (it may include additional fields).
 
+<div>
+{% tabs output %}
+
+{% tab output generic %}
 ```
 {
     "bam_sorted_indexed": {
@@ -156,6 +194,36 @@ The CWL runner will print a results JSON object to standard output.  It will loo
 }
 ```
 {: .language-yaml }
+{% endtab %}
+
+{% tab output arvados %}
+```
+{
+    "bam_sorted_indexed": {
+        "basename": "Aligned.sortedByCoord.out.bam",
+        "class": "File",
+        "location": "keep:2dbaaef5aefd558e37f14280e47091a9+327/Aligned.sortedByCoord.out.bam",
+        "secondaryFiles": [
+            {
+                "basename": "Aligned.sortedByCoord.out.bam.bai",
+                "class": "File",
+                "location": "keep:2dbaaef5aefd558e37f14280e47091a9+327/Aligned.sortedByCoord.out.bam.bai"
+            }
+        ],
+        "size": 25370695
+    },
+    "qc_html": {
+        "basename": "Mov10_oe_1.subset_fastqc.html",
+        "class": "File",
+        "location": "keep:2dbaaef5aefd558e37f14280e47091a9+327/Mov10_oe_1.subset_fastqc.html",
+        "size": 383589
+    }
+}
+```
+{: .language-yaml }
+{% endtab %}
+{% endtabs %}
+</div>
 
 This has a similar structure as `main-input.yaml`.  The each output
 parameter is listed, with the `location` field of each `File` object

@@ -334,14 +334,14 @@ For example:
 ```
 {: .language-yaml }
 
-> ## `Exercise`
+> ## Exercise
 >
 > Look at `STAR-Align.cwl` and identify the other input parameters that
 > correspond to the command line arguments used in the source script.
 > Also identify the output parameter.  Use these to write the STAR
 > step.
 >
-> > ## `Solution`
+> > ## Solution
 > >
 > > ```
 > >  STAR:
@@ -351,6 +351,7 @@ For example:
 > >      GenomeDir: genome
 > >      ForwardReads: fq
 > >      OutSAMtype: {default: BAM}
+> >      SortedByCoordinate: {default: true}
 > >      OutSAMunmapped: {default: Within}
 > >    out: [alignment]
 > > ```
@@ -425,3 +426,7 @@ outputs:
     outputSource: samtools/bam_sorted_indexed
 ```
 {: .language-yaml }
+
+> ## Episode solution
+> * <a href="{% link assets/answers/ep2/main.cwl %}">main.cwl</a>
+{: .solution}

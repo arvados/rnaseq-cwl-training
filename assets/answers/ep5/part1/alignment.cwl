@@ -24,6 +24,7 @@ steps:
       GenomeDir: genome
       ForwardReads: fq
       OutSAMtype: {default: BAM}
+      SortedByCoordinate: {default: true}
       OutSAMunmapped: {default: Within}
     out: [alignment]
 
@@ -33,7 +34,6 @@ steps:
       bam_sorted: STAR/alignment
     out: [bam_sorted_indexed]
 
-  ### 8. Adding it to the workflow
   featureCounts:
     requirements:
       ResourceRequirement:
@@ -52,7 +52,6 @@ outputs:
     type: File
     outputSource: samtools/bam_sorted_indexed
 
-  # Adding it to the workflow
   featurecounts:
     type: File
     outputSource: featureCounts/featurecounts
