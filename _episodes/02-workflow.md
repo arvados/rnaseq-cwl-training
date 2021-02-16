@@ -450,5 +450,5 @@ outputs:
 {: .language-yaml }
 
 > ## Episode solution
-> * <a href="{% link assets/answers/ep2/main.cwl %}">main.cwl</a>
+> * <a href="{% link ../assets/answers/ep2/main.cwl %}">main.cwl</a>
 {: .solution}

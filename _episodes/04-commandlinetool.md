@@ -266,6 +266,6 @@ add it to our workflow.
 {: .challenge}
 
 > ## Episode solution
-> * <a href="{% link assets/answers/ep4/main.cwl %}">main.cwl</a>
-> * <a href="{% link assets/answers/ep4/featureCounts.cwl %}">featureCounts.cwl</a>
+> * <a href="{% link ../assets/answers/ep4/main.cwl %}">main.cwl</a>
+> * <a href="{% link ../assets/answers/ep4/featureCounts.cwl %}">featureCounts.cwl</a>
 {: .solution}
