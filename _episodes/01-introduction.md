@@ -39,7 +39,7 @@ expression".
 
 The entire process looks like this:
 
-![](../assets/img/RNAseqWorkflow.png){: height="400px"}
+![]({{ relative_root_path }}/assets/img/RNAseqWorkflow.png){: height="400px"}
 
 For this training, we are only concerned with the middle analytical
 steps (skipping adapter trimming).

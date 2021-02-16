@@ -158,7 +158,7 @@ Resource requirements you can set include:
 {: .challenge }
 
 > ## Episode solution
-> * <a href="{% link ../assets/answers/ep3/main.cwl %}">main.cwl</a>
+> * <a href="{{ relative_root_path }}{% link /assets/answers/ep3/main.cwl %}">main.cwl</a>
 {: .solution}
 
 # Workflow results
