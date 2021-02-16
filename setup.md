@@ -110,6 +110,8 @@ git submodule add https://github.com/common-workflow-library/bio-cwl-tools.git
 > you do not need to perform this download step.
 {: .callout}
 
+Use `arv-copy` to copy the collection:
+
 ```
 arv-copy --src jutro 9178fe1b80a08a422dbe02adfd439764+925
 ```
@@ -129,6 +131,8 @@ This is a rather large download (4 GB).  Depending on your bandwidth, it may be 
 > `02a12ce9e2707610991bd29d38796b57+2912` into the search box to see
 > if you already have access to this collection.
 {: .callout}
+
+Use `arv-copy` to copy the collection:
 
 ```
 arv-copy --src jutro 02a12ce9e2707610991bd29d38796b57+2912

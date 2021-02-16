@@ -64,7 +64,7 @@ echo "Processing file $fq"
 fastqc $fq
 
 # Run STAR
-STAR --runThreadN $cores --genomeDir $genome --readFilesIn $fq --outFileNamePrefix $align_out --outSAMtype BAM SortedByCoordinate --outSAMunmapped Within --outSAMattributes Standard
+STAR --runThreadN $cores --genomeDir $genome --readFilesIn $fq --outSAMtype BAM SortedByCoordinate --outSAMunmapped Within
 
 # Create BAM index
 samtools index $counts_input_bam
@@ -302,7 +302,7 @@ The next step is to run the STAR aligner.
 
 ```
 # Run STAR
-STAR --runThreadN $cores --genomeDir $genome --readFilesIn $fq --outFileNamePrefix $align_out --outSAMtype BAM SortedByCoordinate --outSAMunmapped Within --outSAMattributes Standard
+STAR --runThreadN $cores --genomeDir $genome --readFilesIn $fq --outSAMtype BAM SortedByCoordinate --outSAMunmapped Within
 ```
 {: .language-bash }
 
@@ -310,54 +310,76 @@ We will go through the same process as the first section.  We find
 there is `bio-cwl-tools/STAR/STAR-Align.cwl`.  We will open the file
 and look at the `inputs` section to determine what input parameters
 correspond to the command line parmeters from our source script.
-Command line flags generally appear appear in either the `arguments`
-field, or the `prefix` field of the `inputBinding` section of an input
-parameter declaration.  For example, this tells us that the
-`GenomeDir` input parameter corresponds to the `--genomeDir` command
-line parameter.
-
-```
-  GenomeDir:
-    type: Directory
-    inputBinding:
-      prefix: "--genomeDir"
-```
-{: .language-yaml }
-
-Sometimes we want to provide input values to a step without making
-them as workflow-level inputs.  We can do this with `{default: N}`.
-For example:
-
-```
-   in:
-     RunThreadN: {default: 4}
-```
-{: .language-yaml }
 
 > ## Exercise
 >
-> Look at `STAR-Align.cwl` and identify the other input parameters that
-> correspond to the command line arguments used in the source script.
-> Also identify the output parameter.  Use these to write the STAR
-> step.
+> Look at `STAR-Align.cwl` and identify the input parameters that
+> correspond to the command line arguments used in the source script:
+> `--runThreadN`, `--genomeDir`, `--outSAMtype`, and
+> `--outSAMunmapped`.  Also identify the name of the output parameter.
+> Use these to write the STAR step.
+>
+> > ## Solution
+> >
+> > input parameter name: RunThreadN, GenomeDir, ForwardReads, OutSAMtype, SortedByCoordinate, OutSAMunmapped
+> >
+> > output parameter name: alignment
+> {: .solution}
+{: .challenge}
+
+> ## Command line flags
+>
+> Command line flags generally appear appear in either the `arguments`
+> field, or the `prefix` field of the `inputBinding` section of an
+> input parameter declaration.  For example, this section of
+> `STAR-Align.cwl` tells us that the `GenomeDir` input parameter
+> corresponds to the `--genomeDir` command line parameter.
+>
+> ```
+>   GenomeDir:
+>     type: Directory
+>     inputBinding:
+>       prefix: "--genomeDir"
+> ```
+> {: .language-yaml }
+{: .callout}
+
+> ## Default values
+>
+> Sometimes we want to provide input values to a step without making
+> them as workflow-level inputs.  We can do this with `{default: N}`.
+> For example:
+>
+> ```
+>    in:
+>      RunThreadN: {default: 4}
+> ```
+> {: .language-yaml }
+{: .callout}
+
+> ## Exercise
+>
+> Using the input and output parameters identified in the last
+> exercise, write the `run`, `in` and `out` sections of the STAR step.
 >
 > > ## Solution
 > >
 > > ```
-> >  STAR:
-> >    run: bio-cwl-tools/STAR/STAR-Align.cwl
-> >    in:
-> >      RunThreadN: {default: 4}
-> >      GenomeDir: genome
-> >      ForwardReads: fq
-> >      OutSAMtype: {default: BAM}
-> >      SortedByCoordinate: {default: true}
-> >      OutSAMunmapped: {default: Within}
-> >    out: [alignment]
+> >   STAR:
+> >     run: bio-cwl-tools/STAR/STAR-Align.cwl
+> >     in:
+> >       RunThreadN: {default: 4}
+> >       GenomeDir: genome
+> >       ForwardReads: fq
+> >       OutSAMtype: {default: BAM}
+> >       SortedByCoordinate: {default: true}
+> >       OutSAMunmapped: {default: Within}
+> >     out: [alignment]
 > > ```
 > > {: .language-yaml }
 > {: .solution}
 {: .challenge}
+
 
 # Running samtools
 

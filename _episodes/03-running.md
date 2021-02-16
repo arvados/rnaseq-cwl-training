@@ -78,7 +78,7 @@ genome:
   location: keep:02a12ce9e2707610991bd29d38796b57+2912
 gtf:
   class: File
-  location: 9178fe1b80a08a422dbe02adfd439764+925/reference_data/chr1-hg19_genes.gtf
+  location: keep:9178fe1b80a08a422dbe02adfd439764+925/reference_data/chr1-hg19_genes.gtf
 ```
 {: .language-yaml }
 
