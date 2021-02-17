@@ -260,7 +260,7 @@ outputs:
 {: .challenge }
 
 > ## Episode solution
-> * <a href="{{ relative_root_path }}{% link /assets/answers/ep5/part4/main.cwl %}">main.cwl</a>
-> * <a href="{{ relative_root_path }}{% link /assets/answers/ep5/part4/alignment.cwl %}">alignment.cwl</a>
-> * <a href="{{ relative_root_path }}{% link /assets/answers/ep5/part4/featureCounts.cwl %}">featureCounts.cwl</a>
+> * <a href="../assets/answers/ep5/part4/main.cwl">main.cwl</a>
+> * <a href="../assets/answers/ep5/part4/alignment.cwl">alignment.cwl</a>
+> * <a href="../assets/answers/ep5/part4/featureCounts.cwl">featureCounts.cwl</a>
 {: .solution}
