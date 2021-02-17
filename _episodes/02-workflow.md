@@ -317,13 +317,16 @@ correspond to the command line parmeters from our source script.
 > correspond to the command line arguments used in the source script:
 > `--runThreadN`, `--genomeDir`, `--outSAMtype`, and
 > `--outSAMunmapped`.  Also identify the name of the output parameter.
-> Use these to write the STAR step.
 >
 > > ## Solution
 > >
-> > input parameter name: RunThreadN, GenomeDir, ForwardReads, OutSAMtype, SortedByCoordinate, OutSAMunmapped
+> > `--runThreadN` &rarr; `RunThreadN`
+> > `--genomeDir` &rarr; `GenomeDir`
+> > `--readFilesIn` &rarr; `ForwardReads`
+> > `--outSAMtype` &rarr; `OutSAMtype`, `SortedByCoordinate`
+> > `--outSAMunmapped` &rarr; `OutSAMunmapped`
 > >
-> > output parameter name: alignment
+> > output parameter name: `alignment`
 > {: .solution}
 {: .challenge}
 
@@ -359,7 +362,7 @@ correspond to the command line parmeters from our source script.
 
 > ## Exercise
 >
-> Using the input and output parameters identified in the last
+> Using the input and output parameters identified in the previous
 > exercise, write the `run`, `in` and `out` sections of the STAR step.
 >
 > > ## Solution
