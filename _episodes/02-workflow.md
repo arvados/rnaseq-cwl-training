@@ -320,11 +320,11 @@ correspond to the command line parmeters from our source script.
 >
 > > ## Solution
 > >
-> > `--runThreadN` &rarr; `RunThreadN`
-> > `--genomeDir` &rarr; `GenomeDir`
-> > `--readFilesIn` &rarr; `ForwardReads`
-> > `--outSAMtype` &rarr; `OutSAMtype`, `SortedByCoordinate`
-> > `--outSAMunmapped` &rarr; `OutSAMunmapped`
+> > * `--runThreadN` &rarr; `RunThreadN`
+> > * `--genomeDir` &rarr; `GenomeDir`
+> > * `--readFilesIn` &rarr; `ForwardReads`
+> > * `--outSAMtype` &rarr; `OutSAMtype`, `SortedByCoordinate`
+> > * `--outSAMunmapped` &rarr; `OutSAMunmapped`
 > >
 > > output parameter name: `alignment`
 > {: .solution}
