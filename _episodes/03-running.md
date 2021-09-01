@@ -31,10 +31,8 @@ plain strings that may or may not be file paths.
 
 Note: if you don't have example sequence data or the STAR index files, see [setup](/setup.html).
 
-<div>
-{% tabs input %}
-
-{% tab input generic %}
+{% assign tabs = "generic, arvados" | split: ", " %}
+{% capture generic_tab_content %}
 main-input.yaml
 ```
 fq:
@@ -63,10 +61,9 @@ gtf:
 > logging.  The logging you see, how access other logs, and how to
 > track workflow progress will depend on your CWL runner platform.
 {: .challenge }
+{% endcapture %}
 
-{% endtab %}
-
-{% tab input arvados %}
+{% capture arvados_tab_content %}
 main-input.yaml
 ```
 fq:
@@ -88,8 +85,17 @@ gtf:
 > then use the `Run CWL Workflow on Arvados` task.
 >
 {: .challenge }
-{% endtab %}
-{% endtabs %}
+{% endcapture %}
+
+<div class="tabbed">
+  <ul class="tab">
+    {% for tab in tabs %}
+      <li><a href="#section-{{ tab }}">{{ tab }}</a></li>
+    {% endfor %}
+  </ul>
+
+  <section id="section-generic">{{ generic_tab_content | markdownify}}</section>
+  <section id="section-arvados">{{ arvados_tab_content | markdownify}}</section>
 </div>
 
 # Debugging the workflow
@@ -228,3 +234,4 @@ The CWL runner will print a results JSON object to standard output.  It will loo
 This has a similar structure as `main-input.yaml`.  The each output
 parameter is listed, with the `location` field of each `File` object
 indicating where the output file can be found.
+

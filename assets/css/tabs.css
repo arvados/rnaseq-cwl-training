@@ -26,14 +26,27 @@
     line-height: 20px;
 }
 
-.tab > .active > a {
+.tab > li {
+    transition: color .1s ease-in-out;
+}
+
+.tab > li > .active {
     color:#222;
     border-color: #1e87f0;
 }
 
 .tab li a {
     text-decoration: none;
-        cursor: pointer;
+    cursor: pointer;
+}
+
+.tab > li > a:focus {
+    outline: 0;
+}
+
+.tab > li > .active:focus-visible {
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
 }
 
 .tab-content{
