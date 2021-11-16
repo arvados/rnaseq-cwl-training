@@ -96,7 +96,7 @@ assignment (`=`), which cannot include control blocks like `if` or
 `for`.  The `${}` form is a Javascript function, which can include
 control blocks, and must end in a `return` statement.
 
-Dxpressions can both appear in `valueFrom` fields as well as some
+Expressions can both appear in `valueFrom` fields as well as some
 other fields, or in an `ExpressionTool` which, like `Workflow` or
 `CommandLineTool` has explicitly defined `inputs` and `outputs`
 sections.
