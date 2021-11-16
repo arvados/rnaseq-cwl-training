@@ -163,6 +163,11 @@ arvados-cwl-runner bio-cwl-tools/STAR/STAR-Index.cwl chr1-star-index.yaml
 ```
 {: .language-bash }
 
+## Sneak peak
+If you want to jump ahead, here are links to some of the CWL concepts you just used
+  - [YAML array] (https://www.commonwl.org/user_guide/yaml/#arrays)
+  - [CWL array inputs] (https://www.commonwl.org/user_guide/09-array-inputs/index.html)
+  
 {% endtab %}
 {% endtabs %}
 </div>
