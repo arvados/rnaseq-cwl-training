@@ -1,14 +1,16 @@
 ---
-title: "Supplement: Creating Docker Images"
+title: "Supplement: Creating Docker Images for Workflows"
 teaching: 10
 exercises: 1
 questions:
 - "How do I create Docker images from scratch?"
 - "What some best practices for Docker images?"
 objectives:
-- ""
+- "Understand how to get started writing Dockerfiles"
 keypoints:
-- ""
+- "Docker images contain the initial state of the filesystem for a container"
+- "Docker images are made up of layers"
+- "Dockerfiles consist of a series of commands to install software into the container."
 ---
 
 Common Workflow Language supports running tasks inside software
@@ -65,7 +67,6 @@ The first line of the file will specify the base image that we are
 going to build from.  As mentioned, images are divided up into
 "layers", so this tells Docker what to use for the first layer.
 
-
 ```
 FROM debian:10-slim
 ```
@@ -91,11 +92,6 @@ Following image name, separated by a colon is the "tag".  This is
 typically the version of the image.  If not provided, the default tag
 is "latest".  In this example, the tag is "10-slim" indicating Debian
 release 10.
-
-> ## Best practice
->
-> You should always include the tag to refer to a specific image
-> version, or you might run into problems when "latest" changes.
 
 The Docker file should also include a MAINTAINER (this is purely
 metadata, it is stored in the image but not used for execution).
@@ -149,11 +145,13 @@ copied to `/usr/bin`, is committed to a layer.
 
 To build a Docker image from a Dockerfile, use `docker build`.
 
-This command takes the name to use for the image with `-t`, and the
-directory that it should find the `Dockerfile`:
+Use the `-t` option to specify the name of the image.  Use `-f` if the
+file isn't named exactly `Dockerfile`.  The last part is the directory
+where it will find the `Dockerfile` and any files that are referenced
+by `COPY` (described below).
 
 ```
-docker build -t training/bwa .
+docker build -t training/bwa -f Dockerfile.single-stage .
 ```
 
 > ## Exercise
@@ -172,6 +170,68 @@ Dockerfile:
 ```
 COPY requirements.txt /tmp/
 RUN pip install --requirement /tmp/requirements.txt
+```
+
+# Multi-stage builds
+
+As noted, it is good practice to avoiding leaving files in the Docker
+image that were required to build the program, but not to run it, as
+those files are simply useless bloat.  Docker offers a more
+sophisticated way to create clean builds by separating the build steps
+from the creation of the final container.  These are called
+"multi-stage" builds.
+
+A multi stage build has multiple `FROM` lines.  Each `FROM` line is a
+separate container build.  The last `FROM` in the file describes the
+final container image that will be created.
+
+The key benefit is that the different stages are independent, but you
+can copy files from one stage to another.
+
+Here is an example of the bwa build as a multi-stage build.  It is a
+little bit more complicated, but the outcome is a smaller image,
+because the "build-essential" tools are not included in the final
+image.
+
+```
+# Build the base image.  This is the starting point for both the build
+# stage and the final stage.
+# the "AS base" names the image within the Dockerfile
+FROM debian:10-slim AS base
+MAINTAINER Peter Amstutz <peter.amstutz@curii.com>
+
+# Install libz, because the bwa binary will depend on it.
+# As it happens, this already included in the base Debian distribution
+# because lots of things use libz specifically, but it is good practice
+# to explicitly declare that we need it.
+RUN apt-get update -qy
+RUN apt-get install -qy zlib1g
+
+
+# This is the builder image.  It has the commands to install the
+# prerequisites and then build the bwa binary.
+FROM base as builder
+RUN apt-get install -qy build-essential wget unzip zlib1g-dev
+
+# Install BWA 07.7.17
+RUN wget https://github.com/lh3/bwa/archive/v0.7.17.zip
+RUN unzip v0.7.17
+RUN cd bwa-0.7.17 && \
+    make && \
+    cp bwa /usr/bin
+
+
+# Build the final image.  It starts from base (where we ensured that
+# libz was installed) and then copies the bwa binary from the builder
+# image.  The result is the final image only has the compiled bwa
+# binary, but not the clutter from build-essentials or from compiling
+# the program.
+FROM base AS final
+
+# This is the key command, we use the COPY command described earlier,
+# but instead of copying from the host, the --from option copies from
+# the builder image.
+COPY --from=builder /usr/bin/bwa /usr/bin/bwa
 ```
 
 # Best practices for Docker images
@@ -195,35 +255,50 @@ that, be specific in your Dockerfile about what version of the
 software you are installing.  This will greatly aid the
 reproducibility of your Docker image builds.
 
+Similarly, be as specific as possible about the version of the base
+image you want to use in your `FROM` command.  If you don't specify a
+tag, the default tag is called "latest".
+
 ## Tag your builds
 
-Use meaningful tags on the Docker image so you can tell versions of
-your Docker image apart as it is updated over time.  These can reflect
-the version of the underlying software, or the version of the
-Dockerfile itself.  These can be manually assigned version numbers
-(e.g. 1.0, 1.1, 1.2, 2.0), timestamps (e.g. YYYYMMDD like 20220126) or
-the hash of a git commit.
+Use meaningful tags on your own Docker image so you can tell versions
+of your Docker image apart as it is updated over time.  These can
+reflect the version of the underlying software, or a version you
+assign to the Dockerfile itself.  These can be manually assigned
+version numbers (e.g. 1.0, 1.1, 1.2, 2.0), timestamps (e.g. YYYYMMDD
+like 20220126) or the hash of a git commit.
 
 ## Avoid putting reference data to Docker images
 
 Bioinformatics tools often require large reference data sets to run.
 These should be supplied externally (as workflow inputs) rather than
 added to the container image.  This makes it easy to update reference
-data instead of having to rebuild and re-upload a new Docker image
-every time, which is much more time consuming.
+data instead of having to rebuild a new Docker image every time, which
+is much more time consuming.
 
 ## Small scripts can be inputs, too
 
-If you have a small script, e.g. a self-contained Python script which
-relies on modules installed inside the container, but is itself
-contained in a single file, you can supply the script as a workflow
-input.  This makes it easy to update the script instead of having to
-rebuild and re-upload a new Docker image every time, which is much
-more time consuming.
+If you have a small script, e.g. a self-contained single-file Python
+script which imports Python modules installed inside the container,
+you can supply the script as a workflow input.  This makes it easy to
+update the script instead of having to rebuild a new Docker image
+every time, which is much more time consuming.
 
 ## Don't use ENTRYPOINT
 
-The `ENTRYPOINT` Dockerfile command modifies the command line that is executed
-inside the container.  This can result in confusion when the command
-line that was supplied to the container and the command that actually
-runs are different.
+The `ENTRYPOINT` Dockerfile command modifies the command line that is
+executed inside the container.  This can produce confusion when the
+command line that supplied to the container and the command that
+actually runs are different.
+
+## Be careful about the build cache
+
+Docker build has a useful feature where if it has a record of the
+exact `RUN` command against the exact base layer, it can re-use the
+layer from cache instead of re-running it every time.  This is a great
+time-saver during development, but can also be a source of
+frustration: build steps often download files from the Internet.  If
+the file being downloaded changes without the command being used to
+download it changing, it will reuse the cached step with the old copy
+of the file, instead of re-downloading it.  If this happens, use
+`--no-cache` to force it to re-run the steps.

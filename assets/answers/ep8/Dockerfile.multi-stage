@@ -1,0 +1,38 @@
+# Build the base image.  This is the starting point for both the build
+# stage and the final stage.
+# the "AS base" names the image within the Dockerfile
+FROM debian:10-slim AS base
+MAINTAINER Peter Amstutz <peter.amstutz@curii.com>
+
+# Install libz, because the bwa binary will depend on it.
+# As it happens, this already included in the base Debian distribution
+# because lots of things use libz specifically, but it is good practice
+# to explicitly declare that we need it.
+RUN apt-get update -qy
+RUN apt-get install -qy zlib1g
+
+
+# This is the builder image.  It has the commands to install the
+# prerequisites and then build the bwa binary.
+FROM base as builder
+RUN apt-get install -qy build-essential wget unzip zlib1g-dev
+
+# Install BWA 07.7.17
+RUN wget https://github.com/lh3/bwa/archive/v0.7.17.zip
+RUN unzip v0.7.17
+RUN cd bwa-0.7.17 && \
+    make && \
+    cp bwa /usr/bin
+
+
+# Build the final image.  It starts from base (where we ensured that
+# libz was installed) and then copies the bwa binary from the builder
+# image.  The result is the final image only has the compiled bwa
+# binary, but not the clutter from build-essentials or from compiling
+# the program.
+FROM base AS final
+
+# This is the key command, we use the COPY command described earlier,
+# but instead of copying from the host, the --from option copies from
+# the builder image.
+COPY --from=builder /usr/bin/bwa /usr/bin/bwa
