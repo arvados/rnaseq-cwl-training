@@ -302,3 +302,8 @@ the file being downloaded changes without the command being used to
 download it changing, it will reuse the cached step with the old copy
 of the file, instead of re-downloading it.  If this happens, use
 `--no-cache` to force it to re-run the steps.
+
+> ## Episode solution
+> * <a href="../assets/answers/ep8/Dockerfile.single-stage">Dockerfile.single-stage</a>
+> * <a href="../assets/answers/ep8/Dockerfile.multi-stage">Dockerfile.multi-stage</a>
+{: .solution}
