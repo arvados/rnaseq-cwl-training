@@ -158,6 +158,24 @@ docker build -t training/bwa -f Dockerfile.single-stage .
 >
 > Create a `Dockerfile` based on this lesson and build it for yourself.
 >
+> > ## Solution
+> >
+> > FROM debian:10-slim
+> > MAINTAINER Peter Amstutz <peter.amstutz@curii.com>
+> >
+> > RUN apt-get update -qy
+> > RUN apt-get install -qy build-essential wget unzip zlib1g-dev
+> >
+> > # Install BWA 07.7.17
+> > RUN wget https://github.com/lh3/bwa/archive/v0.7.17.zip && \
+> > 	unzip v0.7.17 && \
+> > 	cd bwa-0.7.17 && \
+> > 	make && \
+> > 	cp bwa /usr/bin && \
+> > 	cd .. && \
+> > 	rm -rf bwa-0.7.17
+> >
+> {: .solution}
 {: .challenge}
 
 # Adding files to the image during the build
@@ -236,9 +254,7 @@ COPY --from=builder /usr/bin/bwa /usr/bin/bwa
 
 # Best practices for Docker images
 
-Docker has published guidelines on building efficient images:
-
-https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
+[Docker has published guidelines on building efficient images.](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
 
 Some additional considerations when building images for use with Workflows:
 
@@ -257,7 +273,7 @@ reproducibility of your Docker image builds.
 
 Similarly, be as specific as possible about the version of the base
 image you want to use in your `FROM` command.  If you don't specify a
-tag, the default tag is called "latest".
+tag, the default tag is called "latest", which can change at any time.
 
 ## Tag your builds
 
