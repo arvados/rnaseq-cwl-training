@@ -160,6 +160,7 @@ docker build -t training/bwa -f Dockerfile.single-stage .
 >
 > > ## Solution
 > >
+> > ```
 > > FROM debian:10-slim
 > > MAINTAINER Peter Amstutz <peter.amstutz@curii.com>
 > >
@@ -174,6 +175,7 @@ docker build -t training/bwa -f Dockerfile.single-stage .
 > > 	cp bwa /usr/bin && \
 > > 	cd .. && \
 > > 	rm -rf bwa-0.7.17
+> > ```
 > >
 > {: .solution}
 {: .challenge}
