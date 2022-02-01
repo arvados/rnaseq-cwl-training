@@ -113,10 +113,10 @@ git submodule add https://github.com/common-workflow-library/bio-cwl-tools.git
 > you do not need to perform this download step.
 {: .callout}
 
-1. Go to https://workbench2.jutro.arvadosapi.com and sign in, this will create an account
+1. Go to [https://workbench2.jutro.arvadosapi.com](https://workbench2.jutro.arvadosapi.com) and sign in, this will create an account
 2. Go to `Get an API token` under the user menu
 3. Log into the shell node of your Arvados cluster
-4. On the shell node, copy the host name and token for the 'jutro' cluster into the file `~/.config/arvados/jutro.conf` as described on the page for [arv-copy](https://doc.arvados.org/user/topics/arv-copy.html).
+4. On the shell node, copy the host name and token for the `jutro` cluster into the file `~/.config/arvados/jutro.conf` as described on the page for [arv-copy](https://doc.arvados.org/user/topics/arv-copy.html).
 
 Now, on shell node of your Arvados cluster, use `arv-copy` to copy the collection:
 
