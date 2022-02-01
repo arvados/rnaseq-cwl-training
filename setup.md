@@ -87,7 +87,7 @@ start by forking the
 [arvados-vscode-cwl-template](https://github.com/arvados/arvados-vscode-cwl-template)
 repository.
 
-1. Vscode: On the left sidebar, choose `Explorer` ![](../assets/img/Explorer.png)
+1. Vscode: On the left sidebar, choose `Explorer` ![](assets/img/Explorer.png)
 1. Select `Clone Repository` and enter [https://github.com/arvados/arvados-vscode-cwl-template](https://github.com/arvados/arvados-vscode-cwl-template), then click `Open`
 1. If asked `Would you like to open the cloned repository?` choose `Open`
 
