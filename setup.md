@@ -2,9 +2,7 @@
 title: Setup
 ---
 
-<div>
-{% tabs setup %}
-{% tab setup generic %}
+{% capture generic_tab_content %}
 
 # Setting up a practice repository
 
@@ -75,24 +73,29 @@ cwl-runner bio-cwl-tools/STAR/STAR-Index.cwl chr1-star-index.yaml
 ```
 {: .language-bash }
 
+{% endcapture %}
 
-{% endtab %}
-
-{% tab setup arvados %}
+{% capture arvados_tab_content %}
 
 # Setting up a practice repository
 
 We will create a new git repository and import a library of existing
 tool definitions that will help us build our workflow.
 
-When using the recommended VSCode environment to develop on Arvados, start by forking this repository:
-```
-git clone https://github.com/arvados/arvados-vscode-cwl-template.git rnaseq-cwl-training-exercises
-```
-{: .language-bash }
+When using the recommended [VSCode environment to develop on Arvados](https://doc.arvados.org/v2.3/user/cwl/arvados-vscode-training.html),
+start by forking the
+[arvados-vscode-cwl-template](https://github.com/arvados/arvados-vscode-cwl-template)
+repository.
 
-Next, import bio-cwl-tools with this command:
+1. Vscode: On the left sidebar, choose `Explorer` ![](../assets/img/Explorer.png)
+1. Select `Clone Repository` and enter [https://github.com/arvados/arvados-vscode-cwl-template](https://github.com/arvados/arvados-vscode-cwl-template), then click `Open`
+1. If asked `Would you like to open the cloned repository?` choose `Open`
 
+Next, import the [bio-cwl-tools](https://github.com/common-workflow-library/bio-cwl-tools) repository:
+
+1. Vscode: In the top menu, select `Terminal` &rarr; `New Terminal`
+1. This will open a terminal window in the lower part of the screen
+1. Run this command:
 ```
 git submodule add https://github.com/common-workflow-library/bio-cwl-tools.git
 ```
@@ -110,7 +113,12 @@ git submodule add https://github.com/common-workflow-library/bio-cwl-tools.git
 > you do not need to perform this download step.
 {: .callout}
 
-Use `arv-copy` to copy the collection:
+1. Go to https://workbench2.jutro.arvadosapi.com and sign in, this will create an account
+2. Go to `Get an API token` under the user menu
+3. Log into the shell node of your Arvados cluster
+4. On the shell node, copy the host name and token for the 'jutro' cluster into the file `~/.config/arvados/jutro.conf` as described on the page for [arv-copy](https://doc.arvados.org/user/topics/arv-copy.html).
+
+Now, on shell node of your Arvados cluster, use `arv-copy` to copy the collection:
 
 ```
 arv-copy --src jutro 9178fe1b80a08a422dbe02adfd439764+925
@@ -163,13 +171,16 @@ arvados-cwl-runner bio-cwl-tools/STAR/STAR-Index.cwl chr1-star-index.yaml
 ```
 {: .language-bash }
 
-## Sneak peak
-If you want to jump ahead, here are links to some of the CWL concepts you just used
-  - [YAML array] (https://www.commonwl.org/user_guide/yaml/#arrays)
-  - [CWL array inputs] (https://www.commonwl.org/user_guide/09-array-inputs/index.html)
-  
-{% endtab %}
-{% endtabs %}
+{% endcapture %}
+
+<div class="tabbed">
+  <ul class="tab">
+      <li><a href="#section-generic">generic</a></li>
+      <li><a href="#section-arvados">arvados</a></li>
+  </ul>
+
+  <section id="section-generic">{{ generic_tab_content | markdownify}}</section>
+  <section id="section-arvados">{{ arvados_tab_content | markdownify}}</section>
 </div>
 
 {% include links.md %}

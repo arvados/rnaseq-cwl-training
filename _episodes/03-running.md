@@ -31,8 +31,7 @@ plain strings that may or may not be file paths.
 
 Note: if you don't have example sequence data or the STAR index files, see [setup](/setup.html).
 
-{% assign tabs = "generic, arvados" | split: ", " %}
-{% capture generic_tab_content %}
+{% capture generic_input_tab_content %}
 main-input.yaml
 ```
 fq:
@@ -63,7 +62,7 @@ gtf:
 {: .challenge }
 {% endcapture %}
 
-{% capture arvados_tab_content %}
+{% capture arvados_input_tab_content %}
 main-input.yaml
 ```
 fq:
@@ -89,13 +88,12 @@ gtf:
 
 <div class="tabbed">
   <ul class="tab">
-    {% for tab in tabs %}
-      <li><a href="#section-{{ tab }}">{{ tab }}</a></li>
-    {% endfor %}
+      <li><a href="#section-generic-input">generic</a></li>
+      <li><a href="#section-arvados-input">arvados</a></li>
   </ul>
 
-  <section id="section-generic">{{ generic_tab_content | markdownify}}</section>
-  <section id="section-arvados">{{ arvados_tab_content | markdownify}}</section>
+  <section id="section-generic-input">{{ generic_input_tab_content | markdownify}}</section>
+  <section id="section-arvados-input">{{ arvados_input_tab_content | markdownify}}</section>
 </div>
 
 # Debugging the workflow
@@ -171,10 +169,8 @@ Resource requirements you can set include:
 
 The CWL runner will print a results JSON object to standard output.  It will look something like this (it may include additional fields).
 
-<div>
-{% tabs output %}
+{% capture generic_output_tab_content %}
 
-{% tab output generic %}
 ```
 {
     "bam_sorted_indexed": {
@@ -200,9 +196,9 @@ The CWL runner will print a results JSON object to standard output.  It will loo
 }
 ```
 {: .language-yaml }
-{% endtab %}
+{% endcapture %}
 
-{% tab output arvados %}
+{% capture arvados_output_tab_content %}
 ```
 {
     "bam_sorted_indexed": {
@@ -227,11 +223,18 @@ The CWL runner will print a results JSON object to standard output.  It will loo
 }
 ```
 {: .language-yaml }
-{% endtab %}
-{% endtabs %}
+{% endcapture %}
+
+<div class="tabbed">
+  <ul class="tab">
+      <li><a href="#section-generic-output">generic</a></li>
+      <li><a href="#section-arvados-output">arvados</a></li>
+  </ul>
+
+  <section id="section-generic-output">{{ generic_output_tab_content | markdownify}}</section>
+  <section id="section-arvados-output">{{ arvados_output_tab_content | markdownify}}</section>
 </div>
 
 This has a similar structure as `main-input.yaml`.  The each output
 parameter is listed, with the `location` field of each `File` object
 indicating where the output file can be found.
-
