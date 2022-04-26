@@ -175,12 +175,12 @@ arvados-cwl-runner bio-cwl-tools/STAR/STAR-Index.cwl chr1-star-index.yaml
 
 <div class="tabbed">
   <ul class="tab">
-      <li><a href="#section-generic">generic</a></li>
       <li><a href="#section-arvados">arvados</a></li>
+      <li><a href="#section-generic">generic</a></li>
   </ul>
 
-  <section id="section-generic">{{ generic_tab_content | markdownify}}</section>
   <section id="section-arvados">{{ arvados_tab_content | markdownify}}</section>
+  <section id="section-generic">{{ generic_tab_content | markdownify}}</section>
 </div>
 
 {% include links.md %}

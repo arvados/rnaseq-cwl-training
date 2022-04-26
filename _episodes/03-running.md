@@ -88,12 +88,12 @@ gtf:
 
 <div class="tabbed">
   <ul class="tab">
-      <li><a href="#section-generic-input">generic</a></li>
       <li><a href="#section-arvados-input">arvados</a></li>
+      <li><a href="#section-generic-input">generic</a></li>
   </ul>
 
-  <section id="section-generic-input">{{ generic_input_tab_content | markdownify}}</section>
   <section id="section-arvados-input">{{ arvados_input_tab_content | markdownify}}</section>
+  <section id="section-generic-input">{{ generic_input_tab_content | markdownify}}</section>
 </div>
 
 # Debugging the workflow
@@ -227,12 +227,12 @@ The CWL runner will print a results JSON object to standard output.  It will loo
 
 <div class="tabbed">
   <ul class="tab">
-      <li><a href="#section-generic-output">generic</a></li>
       <li><a href="#section-arvados-output">arvados</a></li>
+      <li><a href="#section-generic-output">generic</a></li>
   </ul>
 
-  <section id="section-generic-output">{{ generic_output_tab_content | markdownify}}</section>
   <section id="section-arvados-output">{{ arvados_output_tab_content | markdownify}}</section>
+  <section id="section-generic-output">{{ generic_output_tab_content | markdownify}}</section>
 </div>
 
 This has a similar structure as `main-input.yaml`.  The each output
