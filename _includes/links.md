@@ -2,8 +2,8 @@
 [cc-by-human]: https://creativecommons.org/licenses/by/4.0/
 [cc-by-legal]: https://creativecommons.org/licenses/by/4.0/legalcode
 [ci]: http://communityin.org/
-[coc-reporting]: https://docs.carpentries.org/topic_folders/policies/incident-reporting.html
-[coc]: https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html
+[coc-reporting]: mailto:info@curii.com
+[coc]: https://git.arvados.org/arvados.git/blob/HEAD:/CODE_OF_CONDUCT.md
 [concept-maps]: https://carpentries.github.io/instructor-training/05-memory/
 [contrib-covenant]: https://contributor-covenant.org/
 [contributing]: {{ repo_url }}/blob/{{ source_branch }}/CONTRIBUTING.md
@@ -29,6 +29,7 @@
 [lesson-reference]: {{ relative_root_path }}{% link reference.md %}
 [lesson-setup]: {{ relative_root_path }}{% link setup.md %}
 [mit-license]: https://opensource.org/licenses/mit-license.html
+[apache-license]: https://opensource.org/licenses/Apache-2.0
 [morea]: https://morea-framework.github.io/
 [numfocus]: https://numfocus.org/
 [osi]: https://opensource.org

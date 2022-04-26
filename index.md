@@ -5,7 +5,7 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 ---
 
 This training will walk you through the development of a
-best-practices CWL workflow.  At the conclusion of this training, you
+best-practices Common Workflow Language (CWL) workflow.  At the conclusion of this training, you
 should have a grasp of the essential components of a workflow, and
 have a basis for learning more.
 
