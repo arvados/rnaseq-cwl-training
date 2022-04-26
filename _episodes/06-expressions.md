@@ -10,7 +10,10 @@ objectives:
 keypoints:
 - "CWL expressions allow you to use custom logic to determine input parameter values."
 - "CWL ExpressionTool can be used to reshape data, such as declaring directories that should contain output files."
+redirect: https://doc.arvados.org/rnaseq-cwl-training/06-expressions/index.html
 ---
+
+This lesson has migrated to https://doc.arvados.org/rnaseq-cwl-training/06-expressions/index.html
 
 # Expressions on step inputs
 

@@ -10,7 +10,10 @@ objectives:
 keypoints:
 - "CWL documents are written using a syntax called YAML."
 - "The key components of the workflow are: the header, the inputs, the steps, and the outputs."
+redirect: https://doc.arvados.org/rnaseq-cwl-training/02-workflow/index.html
 ---
+
+This lesson has migrated to https://doc.arvados.org/rnaseq-cwl-training/02-workflow/index.html
 
 # Source shell script
 

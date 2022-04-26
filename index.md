@@ -2,7 +2,10 @@
 layout: lesson
 root: .  # Is the only page that doesn't follow the pattern /:path/index.html
 permalink: index.html  # Is the only page that doesn't follow the pattern /:path/index.html
+redirect: https://doc.arvados.org/rnaseq-cwl-training/
 ---
+
+This lesson has migrated to https://doc.arvados.org/rnaseq-cwl-training/
 
 This training will walk you through the development of a
 best-practices CWL workflow.  At the conclusion of this training, you

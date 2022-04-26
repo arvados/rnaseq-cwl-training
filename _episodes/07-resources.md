@@ -8,7 +8,10 @@ objectives:
 - "Become a part of the CWL community."
 keypoints:
 - "Learn more advanced techniques from CWL user guide, by asking questions on the CWL forum and chat channel, and reading the specification."
+redirect: https://doc.arvados.org/rnaseq-cwl-training/07-resources/index.html
 ---
+
+This lesson has migrated to https://doc.arvados.org/rnaseq-cwl-training/07-resources/index.html
 
 Hopefully you now have a basic grasp of the steps involved in
 developing a CWL workflow. There are many resources out there to

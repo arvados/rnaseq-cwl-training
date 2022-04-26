@@ -1,5 +1,6 @@
 ---
 title: Setup
+redirect: https://doc.arvados.org/rnaseq-cwl-training/setup.html
 ---
 
 {% capture generic_tab_content %}

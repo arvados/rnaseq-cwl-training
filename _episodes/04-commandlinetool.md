@@ -15,7 +15,10 @@ keypoints:
 - "Use `baseCommand` and `arguments` to provide the program to run and the command line arguments to run it with."
 - "Use `glob` to capture output files and assign them to output parameters."
 - "Use DockerRequirement to supply the name of the Docker image that contains the software to run."
+redirect: https://doc.arvados.org/rnaseq-cwl-training/04-commandlinetool/index.html
 ---
+
+This lesson has migrated to https://doc.arvados.org/rnaseq-cwl-training/04-commandlinetool/index.html
 
 It is time to add the last step in the analysis.
 

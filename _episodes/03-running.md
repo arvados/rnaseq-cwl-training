@@ -14,7 +14,10 @@ keypoints:
 - "A common reason for a workflow step fails is insufficient RAM."
 - "Use ResourceRequirement to set the amount of RAM to be allocated to the job."
 - "Output parameter values are printed as JSON to standard output at the end of the run."
+redirect: https://doc.arvados.org/rnaseq-cwl-training/03-running/index.html
 ---
+
+This lesson has migrated to https://doc.arvados.org/rnaseq-cwl-training/03-running/index.html
 
 # The input parameter file
 

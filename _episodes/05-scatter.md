@@ -10,7 +10,10 @@ keypoints:
 - "Separate the part of the workflow that you want to run multiple times into a subworkflow."
 - "Use a scatter step to run the subworkflow over a list of inputs."
 - "The result of a scatter is an array, which can be used in a combine step to get a single result."
+redirect: https://doc.arvados.org/rnaseq-cwl-training/05-scatter/index.html
 ---
+
+This lesson has migrated to https://doc.arvados.org/rnaseq-cwl-training/05-scatter/index.html
 
 In the previous lesson, we completed converting the function of the
 original source shell script into CWL.  This lesson expands the scope

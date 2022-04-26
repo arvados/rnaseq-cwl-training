@@ -11,7 +11,10 @@ keypoints:
 - "Common Workflow Language is a standard for describing data analysis workflows"
 - "We will use an bioinformatics RNA-seq analysis as an example workflow, but does not require in-depth knowledge of biology."
 - "After completing this training, you should be able to begin writing workflows for your own analysis, and know where to learn more."
+redirect: https://doc.arvados.org/rnaseq-cwl-training/01-introduction/index.html
 ---
+
+This lesson has migrated to https://doc.arvados.org/rnaseq-cwl-training/01-introduction/index.html
 
 # Introduction to Common Worklow Language
 

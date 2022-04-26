@@ -11,7 +11,10 @@ keypoints:
 - "Docker images contain the initial state of the filesystem for a container"
 - "Docker images are made up of layers"
 - "Dockerfiles consist of a series of commands to install software into the container."
+redirect: https://doc.arvados.org/rnaseq-cwl-training/08-supplement-docker/index.html
 ---
+
+This lesson has migrated to https://doc.arvados.org/rnaseq-cwl-training/08-supplement-docker/index.html
 
 Common Workflow Language supports running tasks inside software
 containers.  Software container systems (such as Docker) create an
